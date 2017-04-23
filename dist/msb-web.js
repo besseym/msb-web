@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,18 +83,21 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var container_1 = __webpack_require__(36);
+var container_1 = __webpack_require__(40);
 exports.Container = container_1.Container;
-var matrix_1 = __webpack_require__(37);
+var matrix_1 = __webpack_require__(41);
 exports.Matrix = matrix_1.Matrix;
-var utility_1 = __webpack_require__(11);
+var utility_1 = __webpack_require__(13);
 exports.degrees2radians = utility_1.degrees2radians;
+exports.constrain = utility_1.constrain;
 exports.createRandomRangeGenerator = utility_1.createRandomRangeGenerator;
 exports.createIntegerRandomRangeGenerator = utility_1.createIntegerRandomRangeGenerator;
 exports.integerRandomRange = utility_1.integerRandomRange;
+exports.normalDistribution = utility_1.normalDistribution;
+exports.normalGaussianGenerator = utility_1.normalGaussianGenerator;
 exports.radians2degrees = utility_1.radians2degrees;
 exports.randomRange = utility_1.randomRange;
-var vector_1 = __webpack_require__(38);
+var vector_1 = __webpack_require__(42);
 exports.Vector = vector_1.Vector;
 
 
@@ -108,20 +111,20 @@ exports.Vector = vector_1.Vector;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var eye_1 = __webpack_require__(26);
+var eye_1 = __webpack_require__(30);
 exports.DimEye = eye_1.DimEye;
-var light_1 = __webpack_require__(27);
+var light_1 = __webpack_require__(31);
 exports.DimLight = light_1.DimLight;
-var projection_1 = __webpack_require__(28);
+var projection_1 = __webpack_require__(32);
 exports.DimOrthographicProjection = projection_1.DimOrthographicProjection;
 exports.DimPerspectiveProjection = projection_1.DimPerspectiveProjection;
-var element_1 = __webpack_require__(25);
+var element_1 = __webpack_require__(29);
 exports.DimElement = element_1.DimElement;
-var face_1 = __webpack_require__(8);
+var face_1 = __webpack_require__(10);
 exports.DimFace = face_1.DimFace;
-var model_1 = __webpack_require__(9);
+var model_1 = __webpack_require__(11);
 exports.DimModel = model_1.DimModel;
-var scene_1 = __webpack_require__(29);
+var scene_1 = __webpack_require__(33);
 exports.DimScene = scene_1.DimScene;
 var utility_1 = __webpack_require__(3);
 exports.getWebGLRenderingContext = utility_1.getWebGLRenderingContext;
@@ -213,20 +216,6 @@ exports.toDataArray = toDataArray;
 
 "use strict";
 /**
- * Created by mm28969 on 12/24/16.
- */
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var matrix_1 = __webpack_require__(30);
-exports.DimMatrix = matrix_1.DimMatrix;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
  * Created by michaelbessey on 7/18/16.
  */
 
@@ -255,7 +244,190 @@ exports.RasterShape = RasterShape;
 
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by mm28969 on 12/24/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var index_1 = __webpack_require__(9);
+exports.ColorRGB = index_1.ColorRGB;
+exports.Material = index_1.Material;
+var index_2 = __webpack_require__(1);
+exports.compileShaders = index_2.compileShaders;
+exports.DimEye = index_2.DimEye;
+exports.DimLight = index_2.DimLight;
+exports.DimOrthographicProjection = index_2.DimOrthographicProjection;
+exports.DimPerspectiveProjection = index_2.DimPerspectiveProjection;
+exports.DimScene = index_2.DimScene;
+exports.getWebGLRenderingContext = index_2.getWebGLRenderingContext;
+var index_3 = __webpack_require__(24);
+exports.DimCircleModelBuilder = index_3.DimCircleModelBuilder;
+exports.DimConeModelBuilder = index_3.DimConeModelBuilder;
+exports.DimCubeModelBuilder = index_3.DimCubeModelBuilder;
+exports.DimCylinderModelBuilder = index_3.DimCylinderModelBuilder;
+exports.DimObjModelLoader = index_3.DimObjModelLoader;
+exports.DimRectangleModelBuilder = index_3.DimRectangleModelBuilder;
+exports.DimSphereModelBuilder = index_3.DimSphereModelBuilder;
+exports.DimTriangleModelBuilder = index_3.DimTriangleModelBuilder;
+var index_4 = __webpack_require__(6);
+exports.DimMatrix = index_4.DimMatrix;
+var index_5 = __webpack_require__(37);
+exports.RasterCircle = index_5.RasterCircle;
+exports.RasterImage = index_5.RasterImage;
+exports.RasterRectangle = index_5.RasterRectangle;
+exports.RasterShape = index_5.RasterShape;
+exports.RasterText = index_5.RasterText;
+exports.RasterTriangle = index_5.RasterTriangle;
+
+
+/***/ }),
 /* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by mm28969 on 12/24/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var matrix_1 = __webpack_require__(34);
+exports.DimMatrix = matrix_1.DimMatrix;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by michaelbessey on 8/6/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+// const G: number = 0.0000000000667428;
+var G = 0.5;
+var NatureMover = (function () {
+    function NatureMover(mass) {
+        if (mass === void 0) { mass = 1.0; }
+        this.mass = mass;
+        this.location = new msb_math_1.Vector(0, 0);
+        this.velocity = new msb_math_1.Vector(0, 0);
+        this._acceleration = new msb_math_1.Vector(0, 0);
+        this.angle = 0;
+        this.aVelocity = 0;
+        this._aAcceleration = 0;
+        this.speedLimit = 10;
+        this.angularLimit = 10;
+        this.damping = 1.0;
+    }
+    NatureMover.prototype.update = function () {
+        this.velocity.add(this._acceleration);
+        this.velocity.multiply(this.damping);
+        this.aVelocity = this.aVelocity + this._aAcceleration;
+        this.applySpeedLimit();
+        this.location.add(this.velocity);
+        this.angle = this.angle + this.aVelocity;
+        this._acceleration.multiply(0);
+        this._aAcceleration = 0;
+    };
+    NatureMover.prototype.applyAngularForce = function (a) {
+        this._aAcceleration = this._aAcceleration + a;
+    };
+    NatureMover.prototype.applyForce = function (f) {
+        this._acceleration.add(msb_math_1.Vector.divide(f, this.mass));
+    };
+    NatureMover.prototype.applyFriction = function (c) {
+        var friction = this.velocity.clone();
+        friction.normalize();
+        friction.multiply(-1);
+        friction.multiply(c);
+        this.applyForce(friction);
+    };
+    NatureMover.prototype.applyDrag = function (c, p, a) {
+        if (p === void 0) { p = 1; }
+        if (a === void 0) { a = 1; }
+        var drag = this.velocity.clone(), speed = drag.magnitude, dragMagnitude = -0.5 * p * speed * speed * a * c;
+        drag.normalize();
+        drag.multiply(dragMagnitude);
+        this.applyForce(drag);
+    };
+    NatureMover.prototype.getAttraction = function (m, minDistance, maxDistance) {
+        if (minDistance === void 0) { minDistance = 5.0; }
+        if (maxDistance === void 0) { maxDistance = 25.0; }
+        var attraction = msb_math_1.Vector.subtract(m.location, this.location), distance = attraction.magnitude, attractionStrength = 1;
+        // console.log(distance);
+        if (distance >= minDistance && distance <= maxDistance) {
+            attractionStrength = (G * this.mass * m.mass) / (distance * distance);
+            // console.log(attractionStrength);
+            attraction.normalize();
+            attraction.multiply(attractionStrength);
+        }
+        else {
+            attraction.multiply(0);
+        }
+        return attraction;
+    };
+    NatureMover.prototype.applyRepellent = function (m, minDistance, maxDistance) {
+        if (minDistance === void 0) { minDistance = 5.0; }
+        if (maxDistance === void 0) { maxDistance = 25.0; }
+        var repellent = this.getAttraction(m, minDistance, maxDistance);
+        repellent.multiply(-1);
+        this.applyForce(repellent);
+    };
+    NatureMover.prototype.applyAttraction = function (m, minDistance, maxDistance) {
+        if (minDistance === void 0) { minDistance = 5.0; }
+        if (maxDistance === void 0) { maxDistance = 25.0; }
+        var attraction = this.getAttraction(m, minDistance, maxDistance);
+        this.applyForce(attraction);
+    };
+    NatureMover.prototype.applyGravity = function (g) {
+        var gravity = new msb_math_1.Vector(0.0, g);
+        gravity.multiply(this.mass);
+        this.applyForce(gravity);
+    };
+    NatureMover.prototype.applyPassThrough = function (container) {
+        if (this.location.x < container.xMin) {
+            this.location.x = container.xMax;
+        }
+        if (this.location.x > container.xMax) {
+            this.location.x = container.xMin;
+        }
+        if (this.location.y < container.yMin) {
+            this.location.y = container.yMax;
+        }
+        if (this.location.y > container.yMax) {
+            this.location.y = container.yMin;
+        }
+    };
+    NatureMover.prototype.applyBounce = function (container) {
+        if ((this.location.x < container.xMin) || (this.location.x > container.xMax)) {
+            this.velocity.x = this.velocity.x * -1;
+        }
+        if ((this.location.y < container.yMin) || (this.location.y > container.yMax)) {
+            this.velocity.y = this.velocity.y * -1;
+        }
+    };
+    NatureMover.prototype.applySpeedLimit = function () {
+        if (this.speedLimit && this.speedLimit > 0) {
+            var m = this.velocity.magnitude;
+            if (m > this.speedLimit) {
+                this.velocity.magnitude = this.speedLimit;
+            }
+        }
+        this.aVelocity = msb_math_1.constrain(this.aVelocity, -this.angularLimit, this.angularLimit);
+    };
+    return NatureMover;
+}());
+exports.NatureMover = NatureMover;
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -316,7 +488,7 @@ exports.ColorRGB = ColorRGB;
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -325,17 +497,17 @@ exports.ColorRGB = ColorRGB;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var color_1 = __webpack_require__(6);
+var color_1 = __webpack_require__(8);
 exports.ColorRGB = color_1.ColorRGB;
 exports.ColorHSL = color_1.ColorHSL;
-var font_1 = __webpack_require__(14);
+var font_1 = __webpack_require__(18);
 exports.Font = font_1.Font;
-var material_1 = __webpack_require__(15);
+var material_1 = __webpack_require__(19);
 exports.Material = material_1.Material;
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -373,7 +545,7 @@ exports.DimFaceData = DimFaceData;
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -382,8 +554,8 @@ exports.DimFaceData = DimFaceData;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(4);
-var face_1 = __webpack_require__(8);
+var index_1 = __webpack_require__(6);
+var face_1 = __webpack_require__(10);
 var DimModel = (function () {
     function DimModel() {
         this.faceArray = [];
@@ -410,7 +582,7 @@ exports.DimModelData = DimModelData;
 
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -429,7 +601,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(5);
+var shape_1 = __webpack_require__(4);
 var RasterRectangle = (function (_super) {
     __extends(RasterRectangle, _super);
     function RasterRectangle(w, h) {
@@ -519,7 +691,7 @@ exports.RasterRectangle = RasterRectangle;
 
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -556,50 +728,202 @@ function integerRandomRange(min, max) {
     return Math.floor((Math.random() * max) + min);
 }
 exports.integerRandomRange = integerRandomRange;
+function constrain(v, min, max) {
+    var r = v;
+    if (r < min) {
+        r = min;
+    }
+    else if (r > max) {
+        r = max;
+    }
+    return r;
+}
+exports.constrain = constrain;
+// http://bl.ocks.org/mbostock/4349187
+// Sample from a normal distribution with mean 0, stddev 1.
+function normalDistribution() {
+    var x = 0, y = 0, rds, c;
+    do {
+        x = Math.random() * 2 - 1;
+        y = Math.random() * 2 - 1;
+        rds = x * x + y * y;
+    } while (rds === 0 || rds > 1);
+    c = Math.sqrt(-2 * Math.log(rds) / rds); // Box-Muller transform
+    return x * c; // throw away extra sample y * c
+}
+exports.normalDistribution = normalDistribution;
+// Simple 1D Gaussian (normal) distribution
+function normalGaussianGenerator(mean, deviation) {
+    return function () {
+        return mean + deviation * normalDistribution();
+    };
+}
+exports.normalGaussianGenerator = normalGaussianGenerator;
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Created by mm28969 on 12/24/16.
+ * Created by michaelbessey on 8/7/16.
  */
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(7);
-exports.ColorRGB = index_1.ColorRGB;
-exports.Material = index_1.Material;
-var index_2 = __webpack_require__(1);
-exports.compileShaders = index_2.compileShaders;
-exports.DimEye = index_2.DimEye;
-exports.DimLight = index_2.DimLight;
-exports.DimOrthographicProjection = index_2.DimOrthographicProjection;
-exports.DimPerspectiveProjection = index_2.DimPerspectiveProjection;
-exports.DimScene = index_2.DimScene;
-exports.getWebGLRenderingContext = index_2.getWebGLRenderingContext;
-var index_3 = __webpack_require__(20);
-exports.DimCircleModelBuilder = index_3.DimCircleModelBuilder;
-exports.DimConeModelBuilder = index_3.DimConeModelBuilder;
-exports.DimCubeModelBuilder = index_3.DimCubeModelBuilder;
-exports.DimCylinderModelBuilder = index_3.DimCylinderModelBuilder;
-exports.DimObjModelLoader = index_3.DimObjModelLoader;
-exports.DimRectangleModelBuilder = index_3.DimRectangleModelBuilder;
-exports.DimSphereModelBuilder = index_3.DimSphereModelBuilder;
-exports.DimTriangleModelBuilder = index_3.DimTriangleModelBuilder;
-var index_4 = __webpack_require__(4);
-exports.DimMatrix = index_4.DimMatrix;
-var index_5 = __webpack_require__(33);
-exports.RasterCircle = index_5.RasterCircle;
-exports.RasterImage = index_5.RasterImage;
-exports.RasterRectangle = index_5.RasterRectangle;
-exports.RasterText = index_5.RasterText;
-exports.RasterTriangle = index_5.RasterTriangle;
+var mover_1 = __webpack_require__(7);
+var NatureActor = (function (_super) {
+    __extends(NatureActor, _super);
+    function NatureActor(body) {
+        var _this = _super.call(this) || this;
+        _this.body = body;
+        return _this;
+    }
+    NatureActor.prototype.draw = function (context) {
+        this.body.location = this.location.clone();
+        this.body.angle = this.angle;
+        this.body.draw(context);
+    };
+    return NatureActor;
+}(mover_1.NatureMover));
+exports.NatureActor = NatureActor;
 
 
 /***/ }),
-/* 13 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by michaelbessey on 8/20/16.
+ */
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+var msb_gl_1 = __webpack_require__(5);
+var mover_1 = __webpack_require__(7);
+var NatureParticle = (function (_super) {
+    __extends(NatureParticle, _super);
+    function NatureParticle() {
+        var _this = _super.call(this) || this;
+        _this.lifeSpan = 120;
+        _this.fillColor = msb_gl_1.ColorRGB.getRandom();
+        return _this;
+    }
+    NatureParticle.prototype.isDead = function () {
+        if (this._life <= 0) {
+            return true;
+        }
+        return false;
+    };
+    NatureParticle.prototype.update = function () {
+        _super.prototype.update.call(this);
+        this._life = this._life - 1;
+        this.fillColor.a = this._life / this._lifeSpan;
+    };
+    NatureParticle.prototype.draw = function (context) {
+        this.body.fillStyle = this.fillColor.toString();
+        this.body.location = this.location.clone();
+        this.body.angle = this.angle;
+        this.body.draw(context);
+    };
+    Object.defineProperty(NatureParticle.prototype, "lifeSpan", {
+        set: function (v) {
+            this._life = v;
+            this._lifeSpan = v;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return NatureParticle;
+}(mover_1.NatureMover));
+exports.NatureParticle = NatureParticle;
+var NatureParticleCircle = (function (_super) {
+    __extends(NatureParticleCircle, _super);
+    function NatureParticleCircle() {
+        var _this = _super.call(this) || this;
+        _this.body = new msb_gl_1.RasterCircle(msb_math_1.randomRange(5, 10));
+        return _this;
+    }
+    return NatureParticleCircle;
+}(NatureParticle));
+exports.NatureParticleCircle = NatureParticleCircle;
+var NatureParticleSquare = (function (_super) {
+    __extends(NatureParticleSquare, _super);
+    function NatureParticleSquare() {
+        var _this = _super.call(this) || this;
+        var side = msb_math_1.randomRange(10, 15);
+        _this.body = new msb_gl_1.RasterRectangle(side, side);
+        _this.aVelocity = 2;
+        return _this;
+    }
+    return NatureParticleSquare;
+}(NatureParticle));
+exports.NatureParticleSquare = NatureParticleSquare;
+var NatureParticleTriangle = (function (_super) {
+    __extends(NatureParticleTriangle, _super);
+    function NatureParticleTriangle() {
+        var _this = _super.call(this) || this;
+        var side = msb_math_1.randomRange(5, 10);
+        _this.body = new msb_gl_1.RasterTriangle(side, side);
+        _this.aVelocity = 2;
+        return _this;
+    }
+    return NatureParticleTriangle;
+}(NatureParticle));
+exports.NatureParticleTriangle = NatureParticleTriangle;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var actor_1 = __webpack_require__(14);
+exports.NatureActor = actor_1.NatureActor;
+var mover_1 = __webpack_require__(7);
+exports.NatureMover = mover_1.NatureMover;
+var oscillator_1 = __webpack_require__(43);
+exports.NatureOscillator = oscillator_1.NatureOscillator;
+var particle_1 = __webpack_require__(44);
+exports.NatureParticle = particle_1.NatureParticle;
+exports.NatureParticleSystemConfetti = particle_1.NatureParticleSystemConfetti;
+var pendulum_1 = __webpack_require__(46);
+exports.NaturePendulum = pendulum_1.NaturePendulum;
+var repeller_1 = __webpack_require__(47);
+exports.NatureRepeller = repeller_1.NatureRepeller;
+var spring_1 = __webpack_require__(48);
+exports.NatureSpring = spring_1.NatureSpring;
+var walker_1 = __webpack_require__(49);
+exports.NatureWalker = walker_1.NatureWalker;
+var wave_1 = __webpack_require__(50);
+exports.NatureWave = wave_1.NatureWave;
+
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -609,7 +933,7 @@ exports.RasterTriangle = index_5.RasterTriangle;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 //msb-gl
-var index_1 = __webpack_require__(12);
+var index_1 = __webpack_require__(5);
 exports.ColorRGB = index_1.ColorRGB;
 exports.compileShaders = index_1.compileShaders;
 exports.DimEye = index_1.DimEye;
@@ -640,14 +964,28 @@ exports.degrees2radians = index_2.degrees2radians;
 exports.createRandomRangeGenerator = index_2.createRandomRangeGenerator;
 exports.createIntegerRandomRangeGenerator = index_2.createIntegerRandomRangeGenerator;
 exports.integerRandomRange = index_2.integerRandomRange;
+exports.normalDistribution = index_2.normalDistribution;
+exports.normalGaussianGenerator = index_2.normalGaussianGenerator;
 exports.radians2degrees = index_2.radians2degrees;
 exports.randomRange = index_2.randomRange;
 exports.Matrix = index_2.Matrix;
 exports.Vector = index_2.Vector;
+//msb-nature
+var index_3 = __webpack_require__(16);
+exports.NatureActor = index_3.NatureActor;
+exports.NatureMover = index_3.NatureMover;
+exports.NatureOscillator = index_3.NatureOscillator;
+exports.NatureParticle = index_3.NatureParticle;
+exports.NatureParticleSystemConfetti = index_3.NatureParticleSystemConfetti;
+exports.NaturePendulum = index_3.NaturePendulum;
+exports.NatureRepeller = index_3.NatureRepeller;
+exports.NatureSpring = index_3.NatureSpring;
+exports.NatureWalker = index_3.NatureWalker;
+exports.NatureWave = index_3.NatureWave;
 
 
 /***/ }),
-/* 14 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -674,7 +1012,7 @@ exports.Font = Font;
 
 
 /***/ }),
-/* 15 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -683,7 +1021,7 @@ exports.Font = Font;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var color_1 = __webpack_require__(6);
+var color_1 = __webpack_require__(8);
 var Material = (function () {
     function Material() {
     }
@@ -821,7 +1159,7 @@ exports.Material = Material;
 
 
 /***/ }),
-/* 16 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -894,7 +1232,7 @@ exports.DimCircleModelBuilder = DimCircleModelBuilder;
 
 
 /***/ }),
-/* 17 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -982,7 +1320,7 @@ exports.DimConeModelBuilder = DimConeModelBuilder;
 
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1082,7 +1420,7 @@ exports.DimCubeModelBuilder = DimCubeModelBuilder;
 
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1224,7 +1562,7 @@ exports.DimCylinderModelBuilder = DimCylinderModelBuilder;
 
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1233,26 +1571,26 @@ exports.DimCylinderModelBuilder = DimCylinderModelBuilder;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var circle_1 = __webpack_require__(16);
+var circle_1 = __webpack_require__(20);
 exports.DimCircleModelBuilder = circle_1.DimCircleModelBuilder;
-var cone_1 = __webpack_require__(17);
+var cone_1 = __webpack_require__(21);
 exports.DimConeModelBuilder = cone_1.DimConeModelBuilder;
-var cube_1 = __webpack_require__(18);
+var cube_1 = __webpack_require__(22);
 exports.DimCubeModelBuilder = cube_1.DimCubeModelBuilder;
-var cylinder_1 = __webpack_require__(19);
+var cylinder_1 = __webpack_require__(23);
 exports.DimCylinderModelBuilder = cylinder_1.DimCylinderModelBuilder;
-var rectangle_1 = __webpack_require__(22);
+var rectangle_1 = __webpack_require__(26);
 exports.DimRectangleModelBuilder = rectangle_1.DimRectangleModelBuilder;
-var sphere_1 = __webpack_require__(23);
+var sphere_1 = __webpack_require__(27);
 exports.DimSphereModelBuilder = sphere_1.DimSphereModelBuilder;
-var triangle_1 = __webpack_require__(24);
+var triangle_1 = __webpack_require__(28);
 exports.DimTriangleModelBuilder = triangle_1.DimTriangleModelBuilder;
-var loader_obj_1 = __webpack_require__(21);
+var loader_obj_1 = __webpack_require__(25);
 exports.DimObjModelLoader = loader_obj_1.DimObjModelLoader;
 
 
 /***/ }),
-/* 21 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1335,7 +1673,7 @@ exports.DimObjModelLoader = DimObjModelLoader;
 
 
 /***/ }),
-/* 22 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1426,7 +1764,7 @@ exports.DimRectangleModelBuilder = DimRectangleModelBuilder;
 
 
 /***/ }),
-/* 23 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1506,7 +1844,7 @@ exports.DimSphereModelBuilder = DimSphereModelBuilder;
 
 
 /***/ }),
-/* 24 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1582,7 +1920,7 @@ exports.DimTriangleModelBuilder = DimTriangleModelBuilder;
 
 
 /***/ }),
-/* 25 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1613,7 +1951,7 @@ exports.DimElement = DimElement;
 
 
 /***/ }),
-/* 26 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1623,7 +1961,7 @@ exports.DimElement = DimElement;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(0);
-var math_1 = __webpack_require__(4);
+var math_1 = __webpack_require__(6);
 var utility_1 = __webpack_require__(3);
 var DimEye = (function () {
     function DimEye() {
@@ -1653,7 +1991,7 @@ exports.DimEye = DimEye;
 
 
 /***/ }),
-/* 27 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1663,7 +2001,7 @@ exports.DimEye = DimEye;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(0);
-var index_2 = __webpack_require__(7);
+var index_2 = __webpack_require__(9);
 var utility_1 = __webpack_require__(3);
 var DimLight = (function () {
     function DimLight(id) {
@@ -1711,7 +2049,7 @@ exports.DimLight = DimLight;
 
 
 /***/ }),
-/* 28 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1730,7 +2068,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(4);
+var index_1 = __webpack_require__(6);
 var utility_1 = __webpack_require__(3);
 var DimProjection = (function () {
     function DimProjection(near, far) {
@@ -1793,7 +2131,7 @@ exports.DimPerspectiveProjection = DimPerspectiveProjection;
 
 
 /***/ }),
-/* 29 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1803,7 +2141,7 @@ exports.DimPerspectiveProjection = DimPerspectiveProjection;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var utility_1 = __webpack_require__(3);
-var model_1 = __webpack_require__(9);
+var model_1 = __webpack_require__(11);
 var DimScene = (function () {
     function DimScene(id, vertexSize) {
         if (id === void 0) { id = 1; }
@@ -1915,7 +2253,7 @@ exports.DimSceneData = DimSceneData;
 
 
 /***/ }),
-/* 30 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2063,7 +2401,7 @@ exports.DimMatrix = DimMatrix;
 
 
 /***/ }),
-/* 31 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2082,7 +2420,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(5);
+var shape_1 = __webpack_require__(4);
 var RasterCircle = (function (_super) {
     __extends(RasterCircle, _super);
     function RasterCircle(radius) {
@@ -2112,7 +2450,7 @@ exports.RasterCircle = RasterCircle;
 
 
 /***/ }),
-/* 32 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2131,7 +2469,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var rectangle_1 = __webpack_require__(10);
+var rectangle_1 = __webpack_require__(12);
 var RasterImage = (function (_super) {
     __extends(RasterImage, _super);
     function RasterImage(image) {
@@ -2148,7 +2486,7 @@ exports.RasterImage = RasterImage;
 
 
 /***/ }),
-/* 33 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2157,20 +2495,22 @@ exports.RasterImage = RasterImage;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var circle_1 = __webpack_require__(31);
+var circle_1 = __webpack_require__(35);
 exports.RasterCircle = circle_1.RasterCircle;
-var image_1 = __webpack_require__(32);
+var image_1 = __webpack_require__(36);
 exports.RasterImage = image_1.RasterImage;
-var rectangle_1 = __webpack_require__(10);
+var rectangle_1 = __webpack_require__(12);
 exports.RasterRectangle = rectangle_1.RasterRectangle;
-var text_1 = __webpack_require__(34);
+var shape_1 = __webpack_require__(4);
+exports.RasterShape = shape_1.RasterShape;
+var text_1 = __webpack_require__(38);
 exports.RasterText = text_1.RasterText;
-var triangle_1 = __webpack_require__(35);
+var triangle_1 = __webpack_require__(39);
 exports.RasterTriangle = triangle_1.RasterTriangle;
 
 
 /***/ }),
-/* 34 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2189,7 +2529,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(5);
+var shape_1 = __webpack_require__(4);
 var RasterText = (function (_super) {
     __extends(RasterText, _super);
     function RasterText(value) {
@@ -2215,7 +2555,7 @@ exports.RasterText = RasterText;
 
 
 /***/ }),
-/* 35 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2231,7 +2571,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(5);
+var shape_1 = __webpack_require__(4);
 var RasterTriangle = (function (_super) {
     __extends(RasterTriangle, _super);
     function RasterTriangle(w, h) {
@@ -2278,7 +2618,7 @@ exports.RasterTriangle = RasterTriangle;
 
 
 /***/ }),
-/* 36 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2330,7 +2670,7 @@ exports.Container = Container;
 
 
 /***/ }),
-/* 37 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2356,13 +2696,13 @@ exports.Matrix = Matrix;
 
 
 /***/ }),
-/* 38 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var utility_1 = __webpack_require__(11);
+var utility_1 = __webpack_require__(13);
 var Vector = (function () {
     function Vector(x, y, z) {
         if (x === void 0) { x = 0; }
@@ -2472,6 +2812,423 @@ var Vector = (function () {
     return Vector;
 }());
 exports.Vector = Vector;
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by besseym on 8/8/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+var NatureOscillator = (function () {
+    function NatureOscillator() {
+        this.location = new msb_math_1.Vector();
+        this.angle = new msb_math_1.Vector();
+        this.velocity = new msb_math_1.Vector();
+        this.amplitude = new msb_math_1.Vector();
+    }
+    NatureOscillator.prototype.oscillate = function () {
+        this.angle.add(this.velocity);
+    };
+    NatureOscillator.prototype.draw = function (context) {
+        var x = Math.sin(this.angle.x) * this.amplitude.x, y = Math.sin(this.angle.y) * this.amplitude.y;
+        this.body.location.x = x;
+        this.body.location.y = y;
+        context.save();
+        context.translate(this.location.x, this.location.y);
+        this.body.draw(context);
+        context.restore();
+    };
+    return NatureOscillator;
+}());
+exports.NatureOscillator = NatureOscillator;
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by mm28969 on 4/23/17.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var particle_1 = __webpack_require__(15);
+exports.NatureParticle = particle_1.NatureParticle;
+var system_1 = __webpack_require__(45);
+exports.NatureParticleSystemConfetti = system_1.NatureParticleSystemConfetti;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by michaelbessey on 8/20/16.
+ */
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+var particle_1 = __webpack_require__(15);
+var NatureParticleSystem = (function () {
+    function NatureParticleSystem(location) {
+        this.location = location;
+        this.particles = [];
+    }
+    NatureParticleSystem.prototype.applyForce = function (force) {
+        var particle;
+        for (var _i = 0, _a = this.particles; _i < _a.length; _i++) {
+            particle = _a[_i];
+            particle.applyForce(force);
+        }
+    };
+    NatureParticleSystem.prototype.applyRepeller = function (repeller) {
+        var particle, force;
+        for (var _i = 0, _a = this.particles; _i < _a.length; _i++) {
+            particle = _a[_i];
+            force = repeller.repel(particle);
+            particle.applyForce(force);
+        }
+    };
+    NatureParticleSystem.prototype.draw = function (context) {
+        var particle;
+        for (var i = this.particles.length - 1; i >= 0; i--) {
+            particle = this.particles[i];
+            if (!particle.isDead()) {
+                particle.update();
+                particle.draw(context);
+            }
+            else {
+                this.particles.splice(i, 1);
+            }
+        }
+    };
+    return NatureParticleSystem;
+}());
+exports.NatureParticleSystem = NatureParticleSystem;
+var NatureParticleSystemConfetti = (function (_super) {
+    __extends(NatureParticleSystemConfetti, _super);
+    function NatureParticleSystemConfetti() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    NatureParticleSystemConfetti.prototype.addParticle = function () {
+        var particle, r = Math.random();
+        if (r < 0.34) {
+            particle = new particle_1.NatureParticleCircle();
+        }
+        else if (r < 0.67) {
+            particle = new particle_1.NatureParticleSquare();
+        }
+        else {
+            particle = new particle_1.NatureParticleTriangle();
+        }
+        // particle = new ParticleSquare();
+        // particle.aVelocity = getRangeRandom(0, 1);
+        particle.velocity = new msb_math_1.Vector(msb_math_1.randomRange(-2, 2), msb_math_1.randomRange(-3, -1));
+        particle.location = this.location.clone();
+        this.particles.push(particle);
+    };
+    return NatureParticleSystemConfetti;
+}(NatureParticleSystem));
+exports.NatureParticleSystemConfetti = NatureParticleSystemConfetti;
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by besseym on 8/12/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_gl_1 = __webpack_require__(5);
+var actor_1 = __webpack_require__(14);
+var gravity = 0.4;
+var NaturePendulum = (function () {
+    function NaturePendulum(anchor, radius) {
+        this.anchor = anchor;
+        this.radius = radius;
+        this.angle = Math.PI / 4;
+        this.aVelocity = 0;
+        this._aAcceleration = 0;
+        this.damping = 0.9995;
+        var circle = new msb_gl_1.RasterCircle();
+        this.bob = new actor_1.NatureActor(circle);
+        this.updateBobLocation();
+    }
+    NaturePendulum.prototype.update = function () {
+        this._aAcceleration = (-1 * gravity / this.radius) * Math.sin(this.angle);
+        this.aVelocity = this.aVelocity + this._aAcceleration;
+        this.angle = this.angle + this.aVelocity;
+        this.aVelocity = this.aVelocity * this.damping;
+        this.updateBobLocation();
+    };
+    NaturePendulum.prototype.draw = function (context) {
+        context.save();
+        context.strokeStyle = this._strokeStyle;
+        context.beginPath();
+        context.moveTo(this.anchor.x, this.anchor.y);
+        context.lineTo(this.bob.location.x, this.bob.location.y);
+        context.stroke();
+        context.closePath();
+        context.restore();
+        this.bob.draw(context);
+    };
+    NaturePendulum.prototype.updateBobLocation = function () {
+        this.bob.location.setXYRadians(this.angle, this.radius);
+        this.bob.location.add(this.anchor);
+    };
+    Object.defineProperty(NaturePendulum.prototype, "strokeStyle", {
+        set: function (s) {
+            this._strokeStyle = s;
+            this.bob.body.strokeStyle = s;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NaturePendulum.prototype, "fillStyle", {
+        set: function (s) {
+            this.bob.body.fillStyle = s;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return NaturePendulum;
+}());
+exports.NaturePendulum = NaturePendulum;
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by michaelbessey on 8/27/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+var msb_gl_1 = __webpack_require__(5);
+var NatureRepeller = (function () {
+    function NatureRepeller(location) {
+        this.location = location;
+        this.strength = 500;
+        this.body = new msb_gl_1.RasterCircle();
+    }
+    NatureRepeller.prototype.repel = function (mover) {
+        var direction = msb_math_1.Vector.subtract(this.location, mover.location), m = direction.magnitude, f = 0.0;
+        m = msb_math_1.constrain(m, 5, 200);
+        direction.normalize();
+        f = -1 * this.strength / (m * m);
+        direction.multiply(f);
+        return direction;
+    };
+    NatureRepeller.prototype.draw = function (context) {
+        this.body.location = this.location.clone();
+        this.body.draw(context);
+    };
+    return NatureRepeller;
+}());
+exports.NatureRepeller = NatureRepeller;
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by michaelbessey on 8/14/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+var k = 0.02;
+var NatureSpring = (function () {
+    function NatureSpring(anchor, length) {
+        this.anchor = anchor;
+        this.length = length;
+        this.minLength = 30;
+        this.maxLength = 2 * this.length;
+    }
+    NatureSpring.prototype.connect = function (actor) {
+        var force = msb_math_1.Vector.subtract(actor.location, this.anchor.location), displacement = force.magnitude, stretch = displacement - this.length;
+        force.normalize();
+        force.multiply(-1 * k * stretch);
+        actor.applyForce(force);
+    };
+    NatureSpring.prototype.constrainLength = function (actor) {
+        var direction = msb_math_1.Vector.subtract(actor.location, this.anchor.location), displacement = direction.magnitude;
+        if (displacement < this.minLength) {
+            direction.normalize();
+            direction.multiply(this.minLength);
+            actor.location = msb_math_1.Vector.add(this.anchor.location, direction);
+            actor.velocity.multiply(0);
+        }
+        else if (displacement > this.maxLength) {
+            direction.normalize();
+            direction.multiply(this.maxLength);
+            actor.location = msb_math_1.Vector.add(this.anchor.location, direction);
+            actor.velocity.multiply(0);
+        }
+    };
+    NatureSpring.prototype.draw = function (context, actor) {
+        context.save();
+        context.strokeStyle = this.strokeStyle;
+        context.beginPath();
+        context.moveTo(this.anchor.location.x, this.anchor.location.y);
+        context.lineTo(actor.location.x, actor.location.y);
+        context.stroke();
+        context.closePath();
+        context.restore();
+        this.anchor.draw(context);
+    };
+    return NatureSpring;
+}());
+exports.NatureSpring = NatureSpring;
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by michaelbessey on 7/18/16.
+ */
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+var mover_1 = __webpack_require__(7);
+var NatureWalker = (function (_super) {
+    __extends(NatureWalker, _super);
+    function NatureWalker(_body) {
+        var _this = _super.call(this) || this;
+        _this._body = _body;
+        _this.normalGaussianGenerator = msb_math_1.normalGaussianGenerator(0, 15);
+        return _this;
+    }
+    // set location(v: Vector) {
+    //
+    //     this._body.location = v;
+    //     this.normalGaussianGenerator = normalGaussianGenerator(v.x, 55);
+    // }
+    //
+    // get location() : Vector {
+    //     return this._body.location;
+    // }
+    NatureWalker.prototype.stepX = function () {
+        var r = Math.random();
+        if (r <= 0.4) {
+            this.location.x = this.location.x + 1;
+        }
+        else if (r <= 0.9) {
+            this.location.x = this.location.x - 1;
+        }
+        // let step = Math.floor((Math.random() * 3) - 1);
+    };
+    NatureWalker.prototype.stepY = function () {
+        var r = Math.random();
+        if (r <= 0.4) {
+            this.location.y = this.location.y + 1;
+        }
+        else if (r <= 0.9) {
+            this.location.y = this.location.y - 1;
+        }
+        // let step = Math.floor((Math.random() * 3) - 1);
+    };
+    NatureWalker.prototype.walk = function () {
+        this.stepX();
+        this.stepY();
+    };
+    NatureWalker.prototype.place = function () {
+        this.location.x = this.normalGaussianGenerator();
+    };
+    NatureWalker.prototype.draw = function (context) {
+        this._body.location = this.location.clone();
+        this._body.draw(context);
+    };
+    return NatureWalker;
+}(mover_1.NatureMover));
+exports.NatureWalker = NatureWalker;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by besseym on 8/8/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+var NatureWave = (function () {
+    function NatureWave(amplitude, period) {
+        if (amplitude === void 0) { amplitude = 100.0; }
+        if (period === void 0) { period = 100; }
+        this.amplitude = amplitude;
+        this.period = period;
+        this.location = new msb_math_1.Vector();
+        this.lineWidth = 30;
+        this.aVelocity = 0.1;
+        this.increment = this.period * 0.5;
+        this._startAngle = 0.0;
+    }
+    NatureWave.prototype.draw = function (context) {
+        context.save();
+        context.lineWidth = this.lineWidth;
+        context.strokeStyle = this.strokeStyle;
+        context.translate(this.location.x, this.location.y);
+        context.beginPath();
+        var angle = this._startAngle;
+        this._startAngle += this.aVelocity;
+        var y = this.amplitude * Math.sin(angle);
+        context.moveTo(0, y);
+        angle += this.aVelocity;
+        for (var x = this.increment; x <= this.period; x += this.increment) {
+            y = this.amplitude * Math.sin(angle);
+            context.lineTo(x, y);
+            angle += this.aVelocity;
+        }
+        context.stroke();
+        context.closePath();
+        context.restore();
+    };
+    return NatureWave;
+}());
+exports.NatureWave = NatureWave;
 
 
 /***/ })

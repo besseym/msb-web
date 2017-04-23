@@ -36,6 +36,7 @@ export {
     RasterCircle,
     RasterImage,
     RasterRectangle,
+    RasterShape,
     RasterText,
     RasterTriangle
 } from "./raster/index";

@@ -30,3 +30,38 @@ export function createIntegerRandomRangeGenerator(min: number, max: number): Fun
 export function integerRandomRange(min: number, max: number): number {
     return Math.floor((Math.random() * max) + min);
 }
+
+export function constrain(v: number, min: number, max: number) {
+    
+    let r = v;
+    if (r < min) {
+        r = min;
+    }
+    else if (r > max) {
+        r = max;
+    }
+
+    return r;
+}
+
+// http://bl.ocks.org/mbostock/4349187
+// Sample from a normal distribution with mean 0, stddev 1.
+export function normalDistribution(): number {
+
+    let x: number = 0, y: number = 0, rds: number, c: number;
+    do {
+        x = Math.random() * 2 - 1;
+        y = Math.random() * 2 - 1;
+        rds = x * x + y * y;
+    } while (rds === 0 || rds > 1);
+    c = Math.sqrt(-2 * Math.log(rds) / rds); // Box-Muller transform
+    return x * c; // throw away extra sample y * c
+}
+
+// Simple 1D Gaussian (normal) distribution
+export function normalGaussianGenerator(mean: number, deviation: number): Function {
+
+    return function() {
+        return mean + deviation * normalDistribution();
+    };
+}

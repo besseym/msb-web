@@ -36,8 +36,25 @@ export {
     createRandomRangeGenerator,
     createIntegerRandomRangeGenerator,
     integerRandomRange,
+    normalDistribution,
+    normalGaussianGenerator,
     radians2degrees,
     randomRange,
     Matrix,
     Vector
 } from "./msb-math/index";
+
+//msb-nature
+export {
+    NatureActor,
+    NatureMover,
+    NatureOscillator,
+    NatureParticle,
+    NatureParticleSystemConfetti,
+    NaturePendulum,
+    NatureRepeller,
+    NatureSpring,
+    NatureWalker,
+    NatureWave
+} from "./msb-nature/index";
+

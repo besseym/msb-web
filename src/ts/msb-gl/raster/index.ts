@@ -5,5 +5,6 @@
 export {RasterCircle} from "./circle";
 export {RasterImage} from "./image";
 export {RasterRectangle} from "./rectangle";
+export {RasterShape} from "./shape";
 export {RasterText} from "./text";
 export {RasterTriangle} from "./triangle";
