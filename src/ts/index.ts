@@ -59,3 +59,8 @@ export {
     NatureWave
 } from "./msb-nature/index";
 
+//msb-nature
+export {
+    mouseElementLocation
+} from "./msb-ui/index";
+
