@@ -47,6 +47,7 @@ export {
 //msb-nature
 export {
     NatureActor,
+    NatureClock,
     NatureMover,
     NatureOscillator,
     NatureParticle,

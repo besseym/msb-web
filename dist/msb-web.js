@@ -126,7 +126,7 @@ var model_1 = __webpack_require__(11);
 exports.DimModel = model_1.DimModel;
 var scene_1 = __webpack_require__(33);
 exports.DimScene = scene_1.DimScene;
-var utility_1 = __webpack_require__(3);
+var utility_1 = __webpack_require__(4);
 exports.getWebGLRenderingContext = utility_1.getWebGLRenderingContext;
 exports.compileShaders = utility_1.compileShaders;
 
@@ -154,6 +154,47 @@ exports.ModelBuilder = ModelBuilder;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by mm28969 on 12/24/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var index_1 = __webpack_require__(9);
+exports.ColorRGB = index_1.ColorRGB;
+exports.Material = index_1.Material;
+var index_2 = __webpack_require__(1);
+exports.compileShaders = index_2.compileShaders;
+exports.DimEye = index_2.DimEye;
+exports.DimLight = index_2.DimLight;
+exports.DimOrthographicProjection = index_2.DimOrthographicProjection;
+exports.DimPerspectiveProjection = index_2.DimPerspectiveProjection;
+exports.DimScene = index_2.DimScene;
+exports.getWebGLRenderingContext = index_2.getWebGLRenderingContext;
+var index_3 = __webpack_require__(24);
+exports.DimCircleModelBuilder = index_3.DimCircleModelBuilder;
+exports.DimConeModelBuilder = index_3.DimConeModelBuilder;
+exports.DimCubeModelBuilder = index_3.DimCubeModelBuilder;
+exports.DimCylinderModelBuilder = index_3.DimCylinderModelBuilder;
+exports.DimObjModelLoader = index_3.DimObjModelLoader;
+exports.DimRectangleModelBuilder = index_3.DimRectangleModelBuilder;
+exports.DimSphereModelBuilder = index_3.DimSphereModelBuilder;
+exports.DimTriangleModelBuilder = index_3.DimTriangleModelBuilder;
+var index_4 = __webpack_require__(6);
+exports.DimMatrix = index_4.DimMatrix;
+var index_5 = __webpack_require__(37);
+exports.RasterCircle = index_5.RasterCircle;
+exports.RasterImage = index_5.RasterImage;
+exports.RasterRectangle = index_5.RasterRectangle;
+exports.RasterShape = index_5.RasterShape;
+exports.RasterText = index_5.RasterText;
+exports.RasterTriangle = index_5.RasterTriangle;
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -211,7 +252,7 @@ exports.toDataArray = toDataArray;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -241,47 +282,6 @@ var RasterShape = (function () {
     return RasterShape;
 }());
 exports.RasterShape = RasterShape;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Created by mm28969 on 12/24/16.
- */
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(9);
-exports.ColorRGB = index_1.ColorRGB;
-exports.Material = index_1.Material;
-var index_2 = __webpack_require__(1);
-exports.compileShaders = index_2.compileShaders;
-exports.DimEye = index_2.DimEye;
-exports.DimLight = index_2.DimLight;
-exports.DimOrthographicProjection = index_2.DimOrthographicProjection;
-exports.DimPerspectiveProjection = index_2.DimPerspectiveProjection;
-exports.DimScene = index_2.DimScene;
-exports.getWebGLRenderingContext = index_2.getWebGLRenderingContext;
-var index_3 = __webpack_require__(24);
-exports.DimCircleModelBuilder = index_3.DimCircleModelBuilder;
-exports.DimConeModelBuilder = index_3.DimConeModelBuilder;
-exports.DimCubeModelBuilder = index_3.DimCubeModelBuilder;
-exports.DimCylinderModelBuilder = index_3.DimCylinderModelBuilder;
-exports.DimObjModelLoader = index_3.DimObjModelLoader;
-exports.DimRectangleModelBuilder = index_3.DimRectangleModelBuilder;
-exports.DimSphereModelBuilder = index_3.DimSphereModelBuilder;
-exports.DimTriangleModelBuilder = index_3.DimTriangleModelBuilder;
-var index_4 = __webpack_require__(6);
-exports.DimMatrix = index_4.DimMatrix;
-var index_5 = __webpack_require__(37);
-exports.RasterCircle = index_5.RasterCircle;
-exports.RasterImage = index_5.RasterImage;
-exports.RasterRectangle = index_5.RasterRectangle;
-exports.RasterShape = index_5.RasterShape;
-exports.RasterText = index_5.RasterText;
-exports.RasterTriangle = index_5.RasterTriangle;
 
 
 /***/ }),
@@ -601,7 +601,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(4);
+var shape_1 = __webpack_require__(5);
 var RasterRectangle = (function (_super) {
     __extends(RasterRectangle, _super);
     function RasterRectangle(w, h) {
@@ -820,7 +820,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var msb_math_1 = __webpack_require__(0);
-var msb_gl_1 = __webpack_require__(5);
+var msb_gl_1 = __webpack_require__(3);
 var mover_1 = __webpack_require__(7);
 var NatureParticle = (function (_super) {
     __extends(NatureParticle, _super);
@@ -916,9 +916,11 @@ var repeller_1 = __webpack_require__(47);
 exports.NatureRepeller = repeller_1.NatureRepeller;
 var spring_1 = __webpack_require__(48);
 exports.NatureSpring = spring_1.NatureSpring;
-var walker_1 = __webpack_require__(49);
+var time_1 = __webpack_require__(50);
+exports.NatureClock = time_1.NatureClock;
+var walker_1 = __webpack_require__(51);
 exports.NatureWalker = walker_1.NatureWalker;
-var wave_1 = __webpack_require__(50);
+var wave_1 = __webpack_require__(52);
 exports.NatureWave = wave_1.NatureWave;
 
 
@@ -933,7 +935,7 @@ exports.NatureWave = wave_1.NatureWave;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 //msb-gl
-var index_1 = __webpack_require__(5);
+var index_1 = __webpack_require__(3);
 exports.ColorRGB = index_1.ColorRGB;
 exports.compileShaders = index_1.compileShaders;
 exports.DimEye = index_1.DimEye;
@@ -973,6 +975,7 @@ exports.Vector = index_2.Vector;
 //msb-nature
 var index_3 = __webpack_require__(16);
 exports.NatureActor = index_3.NatureActor;
+exports.NatureClock = index_3.NatureClock;
 exports.NatureMover = index_3.NatureMover;
 exports.NatureOscillator = index_3.NatureOscillator;
 exports.NatureParticle = index_3.NatureParticle;
@@ -1962,7 +1965,7 @@ exports.DimElement = DimElement;
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(0);
 var math_1 = __webpack_require__(6);
-var utility_1 = __webpack_require__(3);
+var utility_1 = __webpack_require__(4);
 var DimEye = (function () {
     function DimEye() {
         this.position = new index_1.Vector(0, 0, 4.0);
@@ -2002,7 +2005,7 @@ exports.DimEye = DimEye;
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(0);
 var index_2 = __webpack_require__(9);
-var utility_1 = __webpack_require__(3);
+var utility_1 = __webpack_require__(4);
 var DimLight = (function () {
     function DimLight(id) {
         if (id === void 0) { id = 1; }
@@ -2069,7 +2072,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(6);
-var utility_1 = __webpack_require__(3);
+var utility_1 = __webpack_require__(4);
 var DimProjection = (function () {
     function DimProjection(near, far) {
         this.near = near;
@@ -2140,7 +2143,7 @@ exports.DimPerspectiveProjection = DimPerspectiveProjection;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var utility_1 = __webpack_require__(3);
+var utility_1 = __webpack_require__(4);
 var model_1 = __webpack_require__(11);
 var DimScene = (function () {
     function DimScene(id, vertexSize) {
@@ -2420,7 +2423,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(4);
+var shape_1 = __webpack_require__(5);
 var RasterCircle = (function (_super) {
     __extends(RasterCircle, _super);
     function RasterCircle(radius) {
@@ -2501,7 +2504,7 @@ var image_1 = __webpack_require__(36);
 exports.RasterImage = image_1.RasterImage;
 var rectangle_1 = __webpack_require__(12);
 exports.RasterRectangle = rectangle_1.RasterRectangle;
-var shape_1 = __webpack_require__(4);
+var shape_1 = __webpack_require__(5);
 exports.RasterShape = shape_1.RasterShape;
 var text_1 = __webpack_require__(38);
 exports.RasterText = text_1.RasterText;
@@ -2529,7 +2532,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(4);
+var shape_1 = __webpack_require__(5);
 var RasterText = (function (_super) {
     __extends(RasterText, _super);
     function RasterText(value) {
@@ -2571,7 +2574,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var shape_1 = __webpack_require__(4);
+var shape_1 = __webpack_require__(5);
 var RasterTriangle = (function (_super) {
     __extends(RasterTriangle, _super);
     function RasterTriangle(w, h) {
@@ -2960,7 +2963,7 @@ exports.NatureParticleSystemConfetti = NatureParticleSystemConfetti;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var msb_gl_1 = __webpack_require__(5);
+var msb_gl_1 = __webpack_require__(3);
 var actor_1 = __webpack_require__(14);
 var gravity = 0.4;
 var NaturePendulum = (function () {
@@ -3028,7 +3031,7 @@ exports.NaturePendulum = NaturePendulum;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var msb_math_1 = __webpack_require__(0);
-var msb_gl_1 = __webpack_require__(5);
+var msb_gl_1 = __webpack_require__(3);
 var NatureRepeller = (function () {
     function NatureRepeller(location) {
         this.location = location;
@@ -3114,6 +3117,128 @@ exports.NatureSpring = NatureSpring;
 
 "use strict";
 /**
+ * Created by michaelbessey on 7/19/16.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_gl_1 = __webpack_require__(3);
+var NatureClockHand = (function () {
+    function NatureClockHand() {
+        this.lineWidth = 1;
+    }
+    NatureClockHand.prototype.draw = function (context) {
+        var angle = (Math.PI * 2) * this.value - Math.PI / 2;
+        context.save();
+        context.lineWidth = this.lineWidth;
+        context.moveTo(this.startLocation.x, this.startLocation.y);
+        context.lineTo(this.startLocation.x + Math.cos(angle) * this.length, this.startLocation.y + Math.sin(angle) * this.length);
+        context.stroke();
+        context.restore();
+    };
+    return NatureClockHand;
+}());
+var NatureClockNumerals = (function () {
+    function NatureClockNumerals() {
+        this.setFont(25, "Arial");
+        this._numerals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    }
+    NatureClockNumerals.prototype.setFont = function (height, typeface) {
+        this._fontHeight = height;
+        this._font = height.toString() + "px " + typeface;
+    };
+    NatureClockNumerals.prototype.draw = function (context) {
+        var angle = 0, numeralWidth = 0, nStr = "", x = 0, y = 0;
+        for (var _i = 0, _a = this._numerals; _i < _a.length; _i++) {
+            var n = _a[_i];
+            angle = Math.PI / 6 * (n - 3);
+            nStr = n.toString();
+            context.save();
+            context.font = this._font;
+            numeralWidth = context.measureText(nStr).width;
+            x = this.center.x + Math.cos(angle) * (this.radius) - numeralWidth / 2;
+            y = this.center.x + Math.sin(angle) * (this.radius) + this._fontHeight / 3;
+            context.fillText(nStr, x, y);
+            context.restore();
+        }
+    };
+    return NatureClockNumerals;
+}());
+var NatureClock = (function () {
+    function NatureClock(v, r) {
+        var color = new msb_gl_1.ColorRGB(255, 255, 255, 1);
+        this._innerCircle = new msb_gl_1.RasterCircle();
+        this._outerCircle = new msb_gl_1.RasterCircle();
+        this._outerCircle.lineWidth = 5;
+        this._outerCircle.fillStyle = color.toString();
+        this._hourHand = new NatureClockHand();
+        this._minuteHand = new NatureClockHand();
+        this._secondHand = new NatureClockHand();
+        this._numerals = new NatureClockNumerals();
+        this.center = v;
+        this.radius = r;
+    }
+    Object.defineProperty(NatureClock.prototype, "center", {
+        set: function (c) {
+            this._center = c;
+            this._innerCircle.location = c;
+            this._outerCircle.location = c;
+            this._hourHand.startLocation = c;
+            this._minuteHand.startLocation = c;
+            this._secondHand.startLocation = c;
+            this._numerals.center = c;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NatureClock.prototype, "radius", {
+        set: function (r) {
+            this._radius = r;
+            this._outerCircle.radius = r;
+            this._innerCircle.radius = r * 0.05;
+            this._hourHand.length = this._radius * 0.7;
+            this._hourHand.lineWidth = 10;
+            this._minuteHand.length = this._radius * 0.8;
+            this._minuteHand.lineWidth = 5;
+            this._secondHand.length = this._radius * 0.9;
+            this._numerals.radius = this._radius * 0.85;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    NatureClock.prototype.draw = function (context) {
+        var hours = this.date.getHours(), minutes = this.date.getMinutes(), seconds = this.date.getSeconds();
+        this._outerCircle.draw(context);
+        this._innerCircle.draw(context);
+        this._hourHand.value = (hours / 12);
+        this._hourHand.draw(context);
+        this._minuteHand.value = (minutes / 60);
+        this._minuteHand.draw(context);
+        this._secondHand.value = (seconds / 60);
+        this._secondHand.draw(context);
+        this._numerals.draw(context);
+    };
+    return NatureClock;
+}());
+exports.NatureClock = NatureClock;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var clock_1 = __webpack_require__(49);
+exports.NatureClock = clock_1.NatureClock;
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
  * Created by michaelbessey on 7/18/16.
  */
 
@@ -3184,7 +3309,7 @@ exports.NatureWalker = NatureWalker;
 
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

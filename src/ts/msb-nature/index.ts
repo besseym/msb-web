@@ -6,5 +6,6 @@ export {NatureParticle, NatureParticleSystemConfetti} from "./particle";
 export {NaturePendulum} from "./pendulum";
 export {NatureRepeller} from "./repeller";
 export {NatureSpring} from "./spring";
+export {NatureClock} from "./time";
 export {NatureWalker} from "./walker";
 export {NatureWave} from "./wave";
