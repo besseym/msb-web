@@ -1,16 +1,23 @@
 /**
- * Created by mm28969 on 4/23/17.
+ * Created by mm28969 on 12/24/16.
  */
 
-//msb-gl
 export {
     ColorRGB,
+    Material
+} from "./common/index";
+
+export {
     compileShaders,
     DimEye,
     DimLight,
     DimOrthographicProjection,
     DimPerspectiveProjection,
     DimScene,
+    getWebGLRenderingContext
+} from "./dim/index";
+
+export {
     DimCircleModelBuilder,
     DimConeModelBuilder,
     DimCubeModelBuilder,
@@ -18,26 +25,17 @@ export {
     DimObjModelLoader,
     DimRectangleModelBuilder,
     DimSphereModelBuilder,
-    DimTriangleModelBuilder,
-    DimMatrix,
-    getWebGLRenderingContext,
-    Material,
+    DimTriangleModelBuilder
+} from "./dim-builder/index";
+
+export {
+    DimMatrix
+} from "./math/index";
+
+export {
     RasterCircle,
     RasterImage,
     RasterRectangle,
     RasterText,
     RasterTriangle
-} from "./msb-gl/index";
-
-//msb-math
-export {
-    Container,
-    degrees2radians,
-    createRandomRangeGenerator,
-    createIntegerRandomRangeGenerator,
-    integerRandomRange,
-    radians2degrees,
-    randomRange,
-    Matrix,
-    Vector
-} from "./msb-math/index";
+} from "./raster/index";
