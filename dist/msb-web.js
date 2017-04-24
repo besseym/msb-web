@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,9 +83,9 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var container_1 = __webpack_require__(40);
+var container_1 = __webpack_require__(41);
 exports.Container = container_1.Container;
-var matrix_1 = __webpack_require__(41);
+var matrix_1 = __webpack_require__(42);
 exports.Matrix = matrix_1.Matrix;
 var utility_1 = __webpack_require__(13);
 exports.degrees2radians = utility_1.degrees2radians;
@@ -97,7 +97,7 @@ exports.normalDistribution = utility_1.normalDistribution;
 exports.normalGaussianGenerator = utility_1.normalGaussianGenerator;
 exports.radians2degrees = utility_1.radians2degrees;
 exports.randomRange = utility_1.randomRange;
-var vector_1 = __webpack_require__(42);
+var vector_1 = __webpack_require__(43);
 exports.Vector = vector_1.Vector;
 
 
@@ -111,20 +111,20 @@ exports.Vector = vector_1.Vector;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var eye_1 = __webpack_require__(30);
+var eye_1 = __webpack_require__(31);
 exports.DimEye = eye_1.DimEye;
-var light_1 = __webpack_require__(31);
+var light_1 = __webpack_require__(32);
 exports.DimLight = light_1.DimLight;
-var projection_1 = __webpack_require__(32);
+var projection_1 = __webpack_require__(33);
 exports.DimOrthographicProjection = projection_1.DimOrthographicProjection;
 exports.DimPerspectiveProjection = projection_1.DimPerspectiveProjection;
-var element_1 = __webpack_require__(29);
+var element_1 = __webpack_require__(30);
 exports.DimElement = element_1.DimElement;
 var face_1 = __webpack_require__(10);
 exports.DimFace = face_1.DimFace;
 var model_1 = __webpack_require__(11);
 exports.DimModel = model_1.DimModel;
-var scene_1 = __webpack_require__(33);
+var scene_1 = __webpack_require__(34);
 exports.DimScene = scene_1.DimScene;
 var utility_1 = __webpack_require__(4);
 exports.getWebGLRenderingContext = utility_1.getWebGLRenderingContext;
@@ -173,7 +173,7 @@ exports.DimOrthographicProjection = index_2.DimOrthographicProjection;
 exports.DimPerspectiveProjection = index_2.DimPerspectiveProjection;
 exports.DimScene = index_2.DimScene;
 exports.getWebGLRenderingContext = index_2.getWebGLRenderingContext;
-var index_3 = __webpack_require__(24);
+var index_3 = __webpack_require__(25);
 exports.DimCircleModelBuilder = index_3.DimCircleModelBuilder;
 exports.DimConeModelBuilder = index_3.DimConeModelBuilder;
 exports.DimCubeModelBuilder = index_3.DimCubeModelBuilder;
@@ -184,7 +184,7 @@ exports.DimSphereModelBuilder = index_3.DimSphereModelBuilder;
 exports.DimTriangleModelBuilder = index_3.DimTriangleModelBuilder;
 var index_4 = __webpack_require__(6);
 exports.DimMatrix = index_4.DimMatrix;
-var index_5 = __webpack_require__(37);
+var index_5 = __webpack_require__(38);
 exports.RasterCircle = index_5.RasterCircle;
 exports.RasterImage = index_5.RasterImage;
 exports.RasterRectangle = index_5.RasterRectangle;
@@ -294,7 +294,7 @@ exports.RasterShape = RasterShape;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var matrix_1 = __webpack_require__(34);
+var matrix_1 = __webpack_require__(35);
 exports.DimMatrix = matrix_1.DimMatrix;
 
 
@@ -438,12 +438,6 @@ exports.NatureMover = NatureMover;
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(0);
 var ColorHSL = (function () {
-    // static getRandom(): ColorHSL {
-    //
-    //     let integerRandomRangeGenerator = createIntegerRandomRangeGenerator(0, 101);
-    //     return new ColorHSL(getIntegerRandomRange(0, 256),
-    //         integerRandomRangeGenerator(), integerRandomRangeGenerator());
-    // }
     function ColorHSL(h, s, l, a) {
         if (a === void 0) { a = 1.0; }
         this.h = h;
@@ -451,8 +445,20 @@ var ColorHSL = (function () {
         this.l = l;
         this.a = a;
     }
+    ColorHSL.getRandom = function (min, max) {
+        if (min === void 0) { min = 0.0; }
+        if (max === void 0) { max = 1.0; }
+        var generator = index_1.createRandomRangeGenerator(min, max);
+        return new ColorHSL(generator(), generator(), generator());
+    };
+    ColorHSL.getRandomInteger = function (min, max) {
+        if (min === void 0) { min = 0; }
+        if (max === void 0) { max = 256; }
+        var generator = index_1.createIntegerRandomRangeGenerator(min, max);
+        return new ColorHSL(generator(), generator(), generator());
+    };
     ColorHSL.prototype.toArray = function () {
-        return [this.h, this.s, this.l];
+        return [this.h, this.s, this.l, this.a];
     };
     ColorHSL.prototype.toString = function () {
         var h = this.h, s = this.s, l = this.l, a = this.a;
@@ -472,8 +478,14 @@ var ColorRGB = (function () {
     ColorRGB.getRandom = function (min, max) {
         if (min === void 0) { min = 0.0; }
         if (max === void 0) { max = 1.0; }
-        var rangeRandomGenerator = index_1.createRandomRangeGenerator(min, max);
-        return new ColorRGB(rangeRandomGenerator(), rangeRandomGenerator(), rangeRandomGenerator());
+        var generator = index_1.createRandomRangeGenerator(min, max);
+        return new ColorRGB(generator(), generator(), generator());
+    };
+    ColorRGB.getRandomInteger = function (min, max) {
+        if (min === void 0) { min = 0; }
+        if (max === void 0) { max = 256; }
+        var generator = index_1.createIntegerRandomRangeGenerator(min, max);
+        return new ColorRGB(generator(), generator(), generator());
     };
     ColorRGB.prototype.toArray = function () {
         return [this.r, this.g, this.b, this.a];
@@ -500,9 +512,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var color_1 = __webpack_require__(8);
 exports.ColorRGB = color_1.ColorRGB;
 exports.ColorHSL = color_1.ColorHSL;
-var font_1 = __webpack_require__(18);
+var font_1 = __webpack_require__(19);
 exports.Font = font_1.Font;
-var material_1 = __webpack_require__(19);
+var material_1 = __webpack_require__(20);
 exports.Material = material_1.Material;
 
 
@@ -905,27 +917,41 @@ var actor_1 = __webpack_require__(14);
 exports.NatureActor = actor_1.NatureActor;
 var mover_1 = __webpack_require__(7);
 exports.NatureMover = mover_1.NatureMover;
-var oscillator_1 = __webpack_require__(43);
+var oscillator_1 = __webpack_require__(44);
 exports.NatureOscillator = oscillator_1.NatureOscillator;
-var particle_1 = __webpack_require__(44);
+var particle_1 = __webpack_require__(45);
 exports.NatureParticle = particle_1.NatureParticle;
 exports.NatureParticleSystemConfetti = particle_1.NatureParticleSystemConfetti;
-var pendulum_1 = __webpack_require__(46);
+var pendulum_1 = __webpack_require__(47);
 exports.NaturePendulum = pendulum_1.NaturePendulum;
-var repeller_1 = __webpack_require__(47);
+var repeller_1 = __webpack_require__(48);
 exports.NatureRepeller = repeller_1.NatureRepeller;
-var spring_1 = __webpack_require__(48);
+var spring_1 = __webpack_require__(49);
 exports.NatureSpring = spring_1.NatureSpring;
-var time_1 = __webpack_require__(50);
+var time_1 = __webpack_require__(51);
 exports.NatureClock = time_1.NatureClock;
-var walker_1 = __webpack_require__(51);
+var walker_1 = __webpack_require__(52);
 exports.NatureWalker = walker_1.NatureWalker;
-var wave_1 = __webpack_require__(52);
+var wave_1 = __webpack_require__(53);
 exports.NatureWave = wave_1.NatureWave;
 
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by mm28969 on 4/23/17.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var utility_1 = __webpack_require__(54);
+exports.mouseElementLocation = utility_1.mouseElementLocation;
+
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -985,10 +1011,13 @@ exports.NatureRepeller = index_3.NatureRepeller;
 exports.NatureSpring = index_3.NatureSpring;
 exports.NatureWalker = index_3.NatureWalker;
 exports.NatureWave = index_3.NatureWave;
+//msb-nature
+var index_4 = __webpack_require__(17);
+exports.mouseElementLocation = index_4.mouseElementLocation;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1015,7 +1044,7 @@ exports.Font = Font;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1162,7 +1191,7 @@ exports.Material = Material;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1235,7 +1264,7 @@ exports.DimCircleModelBuilder = DimCircleModelBuilder;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1323,7 +1352,7 @@ exports.DimConeModelBuilder = DimConeModelBuilder;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1423,7 +1452,7 @@ exports.DimCubeModelBuilder = DimCubeModelBuilder;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1565,7 +1594,7 @@ exports.DimCylinderModelBuilder = DimCylinderModelBuilder;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1574,26 +1603,26 @@ exports.DimCylinderModelBuilder = DimCylinderModelBuilder;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var circle_1 = __webpack_require__(20);
+var circle_1 = __webpack_require__(21);
 exports.DimCircleModelBuilder = circle_1.DimCircleModelBuilder;
-var cone_1 = __webpack_require__(21);
+var cone_1 = __webpack_require__(22);
 exports.DimConeModelBuilder = cone_1.DimConeModelBuilder;
-var cube_1 = __webpack_require__(22);
+var cube_1 = __webpack_require__(23);
 exports.DimCubeModelBuilder = cube_1.DimCubeModelBuilder;
-var cylinder_1 = __webpack_require__(23);
+var cylinder_1 = __webpack_require__(24);
 exports.DimCylinderModelBuilder = cylinder_1.DimCylinderModelBuilder;
-var rectangle_1 = __webpack_require__(26);
+var rectangle_1 = __webpack_require__(27);
 exports.DimRectangleModelBuilder = rectangle_1.DimRectangleModelBuilder;
-var sphere_1 = __webpack_require__(27);
+var sphere_1 = __webpack_require__(28);
 exports.DimSphereModelBuilder = sphere_1.DimSphereModelBuilder;
-var triangle_1 = __webpack_require__(28);
+var triangle_1 = __webpack_require__(29);
 exports.DimTriangleModelBuilder = triangle_1.DimTriangleModelBuilder;
-var loader_obj_1 = __webpack_require__(25);
+var loader_obj_1 = __webpack_require__(26);
 exports.DimObjModelLoader = loader_obj_1.DimObjModelLoader;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1676,7 +1705,7 @@ exports.DimObjModelLoader = DimObjModelLoader;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1767,7 +1796,7 @@ exports.DimRectangleModelBuilder = DimRectangleModelBuilder;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1847,7 +1876,7 @@ exports.DimSphereModelBuilder = DimSphereModelBuilder;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1923,7 +1952,7 @@ exports.DimTriangleModelBuilder = DimTriangleModelBuilder;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1954,7 +1983,7 @@ exports.DimElement = DimElement;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1994,7 +2023,7 @@ exports.DimEye = DimEye;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2052,7 +2081,7 @@ exports.DimLight = DimLight;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2134,7 +2163,7 @@ exports.DimPerspectiveProjection = DimPerspectiveProjection;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2256,7 +2285,7 @@ exports.DimSceneData = DimSceneData;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2404,7 +2433,7 @@ exports.DimMatrix = DimMatrix;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2453,7 +2482,7 @@ exports.RasterCircle = RasterCircle;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2489,7 +2518,7 @@ exports.RasterImage = RasterImage;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2498,22 +2527,22 @@ exports.RasterImage = RasterImage;
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var circle_1 = __webpack_require__(35);
+var circle_1 = __webpack_require__(36);
 exports.RasterCircle = circle_1.RasterCircle;
-var image_1 = __webpack_require__(36);
+var image_1 = __webpack_require__(37);
 exports.RasterImage = image_1.RasterImage;
 var rectangle_1 = __webpack_require__(12);
 exports.RasterRectangle = rectangle_1.RasterRectangle;
 var shape_1 = __webpack_require__(5);
 exports.RasterShape = shape_1.RasterShape;
-var text_1 = __webpack_require__(38);
+var text_1 = __webpack_require__(39);
 exports.RasterText = text_1.RasterText;
-var triangle_1 = __webpack_require__(39);
+var triangle_1 = __webpack_require__(40);
 exports.RasterTriangle = triangle_1.RasterTriangle;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2558,7 +2587,7 @@ exports.RasterText = RasterText;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2621,7 +2650,7 @@ exports.RasterTriangle = RasterTriangle;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2673,7 +2702,7 @@ exports.Container = Container;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2699,7 +2728,7 @@ exports.Matrix = Matrix;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2818,7 +2847,7 @@ exports.Vector = Vector;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2853,7 +2882,7 @@ exports.NatureOscillator = NatureOscillator;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2864,12 +2893,12 @@ exports.NatureOscillator = NatureOscillator;
 Object.defineProperty(exports, "__esModule", { value: true });
 var particle_1 = __webpack_require__(15);
 exports.NatureParticle = particle_1.NatureParticle;
-var system_1 = __webpack_require__(45);
+var system_1 = __webpack_require__(46);
 exports.NatureParticleSystemConfetti = system_1.NatureParticleSystemConfetti;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2954,7 +2983,7 @@ exports.NatureParticleSystemConfetti = NatureParticleSystemConfetti;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3021,7 +3050,7 @@ exports.NaturePendulum = NaturePendulum;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3056,7 +3085,7 @@ exports.NatureRepeller = NatureRepeller;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3112,7 +3141,7 @@ exports.NatureSpring = NatureSpring;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3223,18 +3252,18 @@ exports.NatureClock = NatureClock;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var clock_1 = __webpack_require__(49);
+var clock_1 = __webpack_require__(50);
 exports.NatureClock = clock_1.NatureClock;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3309,7 +3338,7 @@ exports.NatureWalker = NatureWalker;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3354,6 +3383,24 @@ var NatureWave = (function () {
     return NatureWave;
 }());
 exports.NatureWave = NatureWave;
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by mm28969 on 4/23/17.
+ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var msb_math_1 = __webpack_require__(0);
+function mouseElementLocation(mouse, element) {
+    var bbox = element.getBoundingClientRect(), x = (mouse.clientX - bbox.left) * (element.width / bbox.width), y = (mouse.clientY - bbox.top) * (element.height / bbox.height);
+    return new msb_math_1.Vector(x, y);
+}
+exports.mouseElementLocation = mouseElementLocation;
 
 
 /***/ })
