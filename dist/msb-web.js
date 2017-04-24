@@ -90,8 +90,9 @@ exports.Matrix = matrix_1.Matrix;
 var utility_1 = __webpack_require__(13);
 exports.degrees2radians = utility_1.degrees2radians;
 exports.constrain = utility_1.constrain;
-exports.createRandomRangeGenerator = utility_1.createRandomRangeGenerator;
+exports.createHarmonicGenerator = utility_1.createHarmonicGenerator;
 exports.createIntegerRandomRangeGenerator = utility_1.createIntegerRandomRangeGenerator;
+exports.createRandomRangeGenerator = utility_1.createRandomRangeGenerator;
 exports.integerRandomRange = utility_1.integerRandomRange;
 exports.normalDistribution = utility_1.normalDistribution;
 exports.normalGaussianGenerator = utility_1.normalGaussianGenerator;
@@ -709,6 +710,7 @@ exports.RasterRectangle = RasterRectangle;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TWO_PI = 2 * Math.PI;
 function degrees2radians(degrees) {
     return degrees * Math.PI / 180.0;
 }
@@ -771,6 +773,13 @@ function normalGaussianGenerator(mean, deviation) {
     };
 }
 exports.normalGaussianGenerator = normalGaussianGenerator;
+// Return a random integer number between min and max
+function createHarmonicGenerator(applitude, period) {
+    return function (count) {
+        return applitude * Math.cos(exports.TWO_PI * count / period);
+    };
+}
+exports.createHarmonicGenerator = createHarmonicGenerator;
 
 
 /***/ }),
@@ -989,8 +998,9 @@ exports.RasterTriangle = index_1.RasterTriangle;
 var index_2 = __webpack_require__(0);
 exports.Container = index_2.Container;
 exports.degrees2radians = index_2.degrees2radians;
-exports.createRandomRangeGenerator = index_2.createRandomRangeGenerator;
+exports.createHarmonicGenerator = index_2.createHarmonicGenerator;
 exports.createIntegerRandomRangeGenerator = index_2.createIntegerRandomRangeGenerator;
+exports.createRandomRangeGenerator = index_2.createRandomRangeGenerator;
 exports.integerRandomRange = index_2.integerRandomRange;
 exports.normalDistribution = index_2.normalDistribution;
 exports.normalGaussianGenerator = index_2.normalGaussianGenerator;

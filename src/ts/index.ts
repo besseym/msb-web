@@ -33,8 +33,9 @@ export {
 export {
     Container,
     degrees2radians,
-    createRandomRangeGenerator,
+    createHarmonicGenerator,
     createIntegerRandomRangeGenerator,
+    createRandomRangeGenerator,
     integerRandomRange,
     normalDistribution,
     normalGaussianGenerator,

@@ -1,3 +1,5 @@
+export const TWO_PI = 2 * Math.PI;
+
 export function degrees2radians(degrees){
     return degrees * Math.PI / 180.0;
 }
@@ -63,5 +65,13 @@ export function normalGaussianGenerator(mean: number, deviation: number): Functi
 
     return function() {
         return mean + deviation * normalDistribution();
+    };
+}
+
+// Return a random integer number between min and max
+export function createHarmonicGenerator(applitude: number, period: number): Function {
+
+    return function(count: number) {
+        return applitude * Math.cos(TWO_PI * count / period);
     };
 }

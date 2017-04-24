@@ -4,8 +4,9 @@ export {Matrix} from "./matrix";
 export {
     degrees2radians,
     constrain,
-    createRandomRangeGenerator,
+    createHarmonicGenerator,
     createIntegerRandomRangeGenerator,
+    createRandomRangeGenerator,
     integerRandomRange,
     normalDistribution,
     normalGaussianGenerator,
