@@ -24,7 +24,7 @@ export class NatureParticle extends NatureMover {
     constructor() {
         super();
         this.lifeSpan = 120;
-        this.fillColor = ColorRGB.getRandom();
+        this.fillColor = ColorRGB.getRandomInteger();
     }
 
     isDead(): boolean {

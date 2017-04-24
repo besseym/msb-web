@@ -848,7 +848,7 @@ var NatureParticle = (function (_super) {
     function NatureParticle() {
         var _this = _super.call(this) || this;
         _this.lifeSpan = 120;
-        _this.fillColor = msb_gl_1.ColorRGB.getRandom();
+        _this.fillColor = msb_gl_1.ColorRGB.getRandomInteger();
         return _this;
     }
     NatureParticle.prototype.isDead = function () {
