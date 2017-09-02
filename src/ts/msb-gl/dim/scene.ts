@@ -7,7 +7,7 @@ import {toDataArray} from "./utility";
 import {DimModel, DimModelData} from "./model";
 import {DimFace} from "./face";
 
-export class DimScene {
+export abstract class DimSceneBase {
 
     bufferId;
 
@@ -31,8 +31,6 @@ export class DimScene {
     aColor;
     aNormal;
 
-    modelArray: DimModel[];
-
     hasTransformation: boolean;
     hasMaterial: boolean;
 
@@ -44,11 +42,11 @@ export class DimScene {
         this.colorSize = 0;
         this.normalSize = 0;
 
-        this.modelArray = [];
-
         this.hasTransformation = false;
         this.hasMaterial = false;
     }
+
+    abstract getSceneData(): DimSceneData;
 
     get elementSize() {
         return this.vertexSize + this.colorSize + this.normalSize;
@@ -58,7 +56,7 @@ export class DimScene {
 
         let offset = 0,
             stride = Float32Array.BYTES_PER_ELEMENT * this.elementSize,
-            sceneData = new DimSceneData(this.modelArray);
+            sceneData = this.getSceneData();
 
         if(this.hasTransformation){
 
@@ -102,6 +100,70 @@ export class DimScene {
 
             offset = offset + this.normalSize;
         }
+
+        //enable attributes
+        gl.enableVertexAttribArray(this.aPosition);
+
+        if(this.colorSize > 0) {
+            gl.enableVertexAttribArray(this.aColor);
+        }
+
+        if(this.normalSize > 0){
+            gl.enableVertexAttribArray(this.aNormal);
+        }
+    }
+
+    renderModel(gl: WebGLRenderingContext, model: DimModel, elementOffset = 0): number {
+
+        let face: DimFace,
+            newElementOffset = elementOffset;
+
+        if(this.hasTransformation) {
+
+            gl.uniformMatrix4fv(this.uTranslationMatrix, false, toDataArray(model.matrix.toTranslationArray()));
+            gl.uniformMatrix4fv(this.uRotationMatrixX, false, toDataArray(model.matrix.toRotationArrayX()));
+            gl.uniformMatrix4fv(this.uRotationMatrixY, false, toDataArray(model.matrix.toRotationArrayY()));
+            gl.uniformMatrix4fv(this.uRotationMatrixZ, false, toDataArray(model.matrix.toRotationArrayZ()));
+            gl.uniformMatrix4fv(this.uScaleMatrix, false, toDataArray(model.matrix.toScaleArray()));
+        }
+
+        for(face of model.faceArray) {
+
+            if(this.hasMaterial && face.material){
+
+                let material = face.material;
+
+                gl.uniform4fv(this.uAmbient, toDataArray(material.ambient.toArray()));
+                gl.uniform4fv(this.uDiffuse, toDataArray(material.diffuse.toArray()));
+                gl.uniform4fv(this.uSpecular, toDataArray(material.specular.toArray()));
+                gl.uniform1f(this.uShininess, material.shininess);
+            }
+
+            gl.drawArrays(face.drawMode, newElementOffset, face.elementCount);
+            newElementOffset = newElementOffset + face.elementCount;
+        }
+
+        return newElementOffset;
+    }
+
+}
+
+export class DimScene extends DimSceneBase {
+
+    modelArray: DimModel[];
+
+    constructor(){
+
+        super();
+
+        this.modelArray = [];
+    }
+
+    getSceneData(): DimSceneData {
+
+        let sceneData = new DimSceneData();
+        sceneData.populate(this.modelArray);
+        return sceneData;
     }
 
     rotate(){
@@ -115,48 +177,13 @@ export class DimScene {
     render(gl: WebGLRenderingContext) {
 
         let model: DimModel,
-            face: DimFace,
             elementOffset = 0;
-
-        gl.enableVertexAttribArray(this.aPosition);
-
-        if(this.colorSize > 0) {
-            gl.enableVertexAttribArray(this.aColor);
-        }
-
-        if(this.normalSize > 0){
-            gl.enableVertexAttribArray(this.aNormal);
-        }
 
         for (model of this.modelArray) {
 
-            if(this.hasTransformation) {
-
-                gl.uniformMatrix4fv(this.uTranslationMatrix, false, toDataArray(model.matrix.toTranslationArray()));
-                gl.uniformMatrix4fv(this.uRotationMatrixX, false, toDataArray(model.matrix.toRotationArrayX()));
-                gl.uniformMatrix4fv(this.uRotationMatrixY, false, toDataArray(model.matrix.toRotationArrayY()));
-                gl.uniformMatrix4fv(this.uRotationMatrixZ, false, toDataArray(model.matrix.toRotationArrayZ()));
-                gl.uniformMatrix4fv(this.uScaleMatrix, false, toDataArray(model.matrix.toScaleArray()));
-            }
-
-            for(face of model.faceArray) {
-
-                if(this.hasMaterial && face.material){
-
-                    let material = face.material;
-
-                    gl.uniform4fv(this.uAmbient, toDataArray(material.ambient.toArray()));
-                    gl.uniform4fv(this.uDiffuse, toDataArray(material.diffuse.toArray()));
-                    gl.uniform4fv(this.uSpecular, toDataArray(material.specular.toArray()));
-                    gl.uniform1f(this.uShininess, material.shininess);
-                }
-
-                gl.drawArrays(face.drawMode, elementOffset, face.elementCount);
-                elementOffset = elementOffset + face.elementCount;
-            }
+            elementOffset = this.renderModel(gl, model, elementOffset);
         }
     }
-
 }
 
 export class DimSceneData {
@@ -164,7 +191,19 @@ export class DimSceneData {
     elementCount: number;
     elementDataArray: number[];
 
-    constructor(modelArray: DimModel[]) {
+    constructor() {
+
+        this.elementCount = 0;
+        this.elementDataArray = [];
+    }
+
+    addModelData(modelData: DimModelData){
+
+        this.elementDataArray = this.elementDataArray.concat(modelData.elementDataArray);
+        this.elementCount = this.elementCount + modelData.elementCount;
+    }
+
+    populate(modelArray: DimModel[]) {
 
         let model: DimModel,
             modelData: DimModelData;
@@ -175,9 +214,7 @@ export class DimSceneData {
         for(model of modelArray){
 
             modelData = new DimModelData(model);
-
-            this.elementDataArray = this.elementDataArray.concat(modelData.elementDataArray);
-            this.elementCount = this.elementCount + modelData.elementCount;
+            this.addModelData(modelData);
         }
     }
 }

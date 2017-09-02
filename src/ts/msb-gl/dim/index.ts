@@ -12,7 +12,11 @@ export {
 export {DimElement} from "./element";
 export {DimFace} from "./face";
 export {DimModel} from "./model";
-export {DimScene} from "./scene";
+export {
+    DimScene,
+    DimSceneBase,
+    DimSceneData
+} from "./scene";
 
 export {
     createProgram,

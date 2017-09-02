@@ -16,6 +16,8 @@ export {
     DimOrthographicProjection,
     DimPerspectiveProjection,
     DimScene,
+    DimSceneBase,
+    DimSceneData,
     getWebGLRenderingContext
 } from "./dim/index";
 
