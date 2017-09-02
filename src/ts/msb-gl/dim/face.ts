@@ -21,6 +21,10 @@ export class DimFace {
     get elementCount(): number {
         return this.elementArray.length;
     }
+
+    toData(){
+        return new DimFaceData(this);
+    }
 }
 
 export class DimFaceData {

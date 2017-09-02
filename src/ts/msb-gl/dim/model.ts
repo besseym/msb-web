@@ -17,6 +17,10 @@ export class DimModel {
         this.faceArray = [];
         this.matrix = new DimMatrix();
     }
+
+    toData(){
+        return new DimModelData(this);
+    }
 }
 
 export class DimModelData {
