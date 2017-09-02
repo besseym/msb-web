@@ -2,19 +2,17 @@
 import {DimModel} from "../../msb-gl"
 import {NatureMover} from "../mover";
 
-export class NatureDimActor extends NatureMover {
+export class NatureDimActor {
 
-    constructor(public body: DimModel) {
-
-        super();
+    constructor(public model: DimModel, public mover: NatureMover) {
     }
 
     update(): void {
 
-        super.update();
+        this.mover.update();
 
-        this.body.matrix.translationX = this.location.x;
-        this.body.matrix.translationY = this.location.y;
-        this.body.matrix.translationZ = this.location.z;
+        this.model.matrix.translationX = this.mover.location.x;
+        this.model.matrix.translationY = this.mover.location.y;
+        this.model.matrix.translationZ = this.mover.location.z;
     }
 }

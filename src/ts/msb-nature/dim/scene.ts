@@ -1,5 +1,7 @@
 import {
-    DimScene
+    DimScene,
+    DimSceneBase,
+    DimSceneData
 } from "../../msb-gl";
 
 import {
@@ -10,39 +12,44 @@ import {
     NatureContainer
 } from "../container";
 
-export class NatureDimScene {
+export class NatureDimScene extends DimSceneBase {
 
-    scene;
     actorArray;
     container: NatureContainer;
 
     constructor(){
 
-        this.scene = new DimScene();
+        super();
         this.actorArray = [];
     }
 
-    addActor(actor: NatureDimActor){
+    getSceneData(): DimSceneData {
 
-        this.actorArray.push(actor);
-        this.scene.modelArray.push(actor.body);
+        let actor: NatureDimActor,
+            sceneData = new DimSceneData();
+
+        for (actor of this.actorArray) {
+            sceneData.addModelData(actor.model.toData());
+        }
+
+        return sceneData;
     }
 
-    update(){
+    updateRender(gl: WebGLRenderingContext){
 
-        let actor: NatureDimActor;
+        let elementOffset = 0,
+            actor: NatureDimActor;
+
         for (actor of this.actorArray) {
+
             actor.update();
 
             if(this.container){
-                this.container.contain(actor);
+                this.container.contain(actor.mover);
             }
+
+            elementOffset = this.renderModel(gl, actor.model, elementOffset);
         }
-    }
-
-    render(gl: WebGLRenderingContext){
-
-        this.scene.render(gl);
     }
 
 }
