@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: "./src/ts/index.ts",
+  entry: "./src/ts/index",
   output: {
     path: __dirname + "/dist",
     filename: "msb-web.js",

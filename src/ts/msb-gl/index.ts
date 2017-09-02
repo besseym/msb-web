@@ -8,7 +8,8 @@ export {
 } from "./common/index";
 
 export {
-    compileShaders,
+    createProgram,
+    createProgramByShaderElements,
     DimEye,
     DimLight,
     DimOrthographicProjection,

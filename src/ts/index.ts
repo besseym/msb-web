@@ -5,7 +5,8 @@
 //msb-gl
 export {
     ColorRGB,
-    compileShaders,
+    createProgram,
+    createProgramByShaderElements,
     DimEye,
     DimLight,
     DimOrthographicProjection,

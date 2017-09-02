@@ -24,28 +24,47 @@ export function getWebGLRenderingContext(canvas: HTMLCanvasElement, optAttribs?)
     return context;
 }
 
-export function compileShaders(gl: WebGLRenderingContext, vertexShaderId: string, fragmentShaderId: string): WebGLProgram {
+export function createShader(gl: WebGLRenderingContext, shaderType: number, shaderSource: string){
+
+    let shader = gl.createShader( shaderType );
+    gl.shaderSource( shader, shaderSource );
+    gl.compileShader( shader );
+    if ( !gl.getShaderParameter(shader, gl.COMPILE_STATUS) ) {
+        throw gl.getShaderInfoLog( shader );
+    }
+
+    return shader;
+}
+
+export function createProgramByShaderElements(gl: WebGLRenderingContext, vertexShaderId: string, fragmentShaderId: string): WebGLProgram {
 
     let program: WebGLProgram,
-        vertextShader: WebGLShader, fragmentShader: WebGLShader,
+        vertextShader: WebGLShader,
+        fragmentShader: WebGLShader,
         vertextShaderElement: HTMLElement = document.getElementById(vertexShaderId),
         fragmentShaderElement: HTMLElement = document.getElementById(fragmentShaderId );
 
-    vertextShader = gl.createShader( gl.VERTEX_SHADER );
-    gl.shaderSource( vertextShader, vertextShaderElement.innerText );
-    gl.compileShader( vertextShader );
-    if ( !gl.getShaderParameter(vertextShader, gl.COMPILE_STATUS) ) {
-        throw gl.getShaderInfoLog( vertextShader );
-    }
-
-    fragmentShader = gl.createShader( gl.FRAGMENT_SHADER );
-    gl.shaderSource( fragmentShader, fragmentShaderElement.innerText );
-    gl.compileShader( fragmentShader );
-    if ( !gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS) ) {
-        throw gl.getShaderInfoLog( fragmentShader );
-    }
+    vertextShader = createShader(gl, gl.VERTEX_SHADER, vertextShaderElement.innerText);
+    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderElement.innerText);
 
     program = gl.createProgram();
+    gl.attachShader( program, vertextShader );
+    gl.attachShader( program, fragmentShader );
+    gl.linkProgram( program );
+
+    if ( !gl.getProgramParameter(program, gl.LINK_STATUS) ) {
+        throw gl.getProgramInfoLog( program );
+    }
+
+    return program;
+}
+
+export function createProgram(gl: WebGLRenderingContext, vertexShaderSource: string, fragmentShaderSource: string): WebGLProgram {
+
+    let vertextShader: WebGLShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource),
+        fragmentShader: WebGLShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource),
+        program: WebGLProgram = gl.createProgram();
+
     gl.attachShader( program, vertextShader );
     gl.attachShader( program, fragmentShader );
     gl.linkProgram( program );
