@@ -12,6 +12,7 @@ export {
     createProgramByShaderElements,
     DimEye,
     DimLight,
+    DimModel,
     DimOrthographicProjection,
     DimPerspectiveProjection,
     DimScene,

@@ -9,3 +9,9 @@ export {NatureSpring} from "./spring";
 export {NatureClock} from "./time";
 export {NatureWalker} from "./walker";
 export {NatureWave} from "./wave";
+export {NatureContainer} from "./container";
+
+export {
+    NatureDimActor,
+    NatureDimScene
+} from "./dim";

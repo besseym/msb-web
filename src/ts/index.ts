@@ -50,6 +50,7 @@ export {
 export {
     NatureActor,
     NatureClock,
+    NatureContainer,
     NatureMover,
     NatureOscillator,
     NatureParticle,
@@ -58,7 +59,9 @@ export {
     NatureRepeller,
     NatureSpring,
     NatureWalker,
-    NatureWave
+    NatureWave,
+    NatureDimActor,
+    NatureDimScene
 } from "./msb-nature/index";
 
 //msb-nature
