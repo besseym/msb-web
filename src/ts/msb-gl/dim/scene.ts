@@ -52,6 +52,14 @@ export abstract class DimSceneBase {
         return this.vertexSize + this.colorSize + this.normalSize;
     }
 
+    loadSceneData(gl: WebGLRenderingContext){
+
+        let sceneData = this.getSceneData();
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferId);
+        gl.bufferData(gl.ARRAY_BUFFER, toDataArray(sceneData.elementDataArray), gl.STATIC_DRAW);
+    }
+
     init(gl: WebGLRenderingContext, glProgram: WebGLProgram){
 
         let offset = 0,
@@ -77,8 +85,7 @@ export abstract class DimSceneBase {
 
         this.bufferId = gl.createBuffer();
         
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferId);
-        gl.bufferData(gl.ARRAY_BUFFER, toDataArray(sceneData.elementDataArray), gl.STATIC_DRAW);
+        this.loadSceneData(gl);
 
         this.aPosition = gl.getAttribLocation(glProgram, "a_Position_" + this.id);
         gl.vertexAttribPointer(this.aPosition, this.vertexSize, gl.FLOAT, false, stride, offset);
