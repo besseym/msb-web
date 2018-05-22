@@ -17,8 +17,9 @@ export class ColorHSL {
 
     static getRandomInteger(min: number = 0, max: number = 256): ColorHSL {
 
-        let generator = createIntegerRandomRangeGenerator(min, max);
-        return new ColorHSL(generator(), generator(), generator());
+        let generator = createIntegerRandomRangeGenerator(min, max),
+            percentGenerator = createIntegerRandomRangeGenerator(0, 100);
+        return new ColorHSL(generator(), percentGenerator(), percentGenerator());
     }
 
     constructor(public h: number, public s: number, public l: number, public a = 1.0) {
