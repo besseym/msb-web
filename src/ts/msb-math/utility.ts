@@ -46,6 +46,33 @@ export function constrain(v: number, min: number, max: number) {
     return r;
 }
 
+export function createConstrainer(min: number, max: number){
+
+    return function(v: number){
+
+        let r: number = v;
+        if(v < min){
+            r = min;
+        }
+        else if(v > max){
+            r = max;
+        }
+
+        return r;
+    }
+}
+
+export function createDomainMapper(domain: number[]){
+
+    return function createRangeMap(range: number[]){
+
+        return function mapper(v: number){
+
+            return range[0] + ((v - domain[0]) * (range[1] - range[0])) / (domain[1] - domain[0]);
+        }
+    }
+}
+
 // http://bl.ocks.org/mbostock/4349187
 // Sample from a normal distribution with mean 0, stddev 1.
 export function normalDistribution(): number {
