@@ -3,6 +3,7 @@
  */
 
 export {
+    ColorHSL,
     ColorRGB,
     Material
 } from "./common/index";
