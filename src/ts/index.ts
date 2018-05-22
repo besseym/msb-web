@@ -4,6 +4,7 @@
 
 //msb-gl
 export {
+    ColorHSL,
     ColorRGB,
     createProgram,
     createProgramByShaderElements,
@@ -34,6 +35,8 @@ export {
 export {
     Container,
     degrees2radians,
+    createConstrainer,
+    createDomainMapper,
     createHarmonicGenerator,
     createIntegerRandomRangeGenerator,
     createRandomRangeGenerator,
