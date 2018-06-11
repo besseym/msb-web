@@ -62,13 +62,17 @@ export function createConstrainer(min: number, max: number){
     }
 }
 
+export function mapDomainRange(v: number, domain: number[], range: number[]){
+    return range[0] + ((v - domain[0]) * (range[1] - range[0])) / (domain[1] - domain[0]);
+}
+
 export function createDomainMapper(domain: number[]){
 
     return function createRangeMap(range: number[]){
 
         return function mapper(v: number){
 
-            return range[0] + ((v - domain[0]) * (range[1] - range[0])) / (domain[1] - domain[0]);
+            return mapDomainRange(v, domain, range);
         }
     }
 }

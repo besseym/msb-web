@@ -10,6 +10,7 @@ export {
     createIntegerRandomRangeGenerator,
     createRandomRangeGenerator,
     integerRandomRange,
+    mapDomainRange,
     normalDistribution,
     normalGaussianGenerator,
     radians2degrees,
