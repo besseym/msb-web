@@ -36,6 +36,18 @@ export class ColorHSL {
     }
 }
 
+export function lerpColorHSL(a: ColorHSL, b: ColorHSL, t: number){
+
+    // console.log(a.toString(), b.toString());
+
+    return new ColorHSL(
+        Math.floor(a.h + (b.h - a.h) * t),
+        Math.floor(a.s + (b.s - a.s) * t),
+        Math.floor(a.l + (b.l - a.l) * t),
+        Math.floor(a.a + (b.a - a.a) * t)
+    );
+}
+
 export class ColorRGB {
 
     static getRandom(min: number = 0.0, max: number = 1.0): ColorRGB {
@@ -62,4 +74,16 @@ export class ColorRGB {
         let r = this.r, g = this.g, b = this.b, a = this.a;
         return `rgba(${r}, ${g}, ${b}, ${a})`;
     }
+}
+
+export function lerpColorRGB(a: ColorRGB, b: ColorRGB, t: number){
+
+    // console.log(a.toString(), b.toString());
+
+    return new ColorRGB(
+        Math.floor(a.r + (b.r - a.r) * t),
+        Math.floor(a.g + (b.g - a.g) * t),
+        Math.floor(a.b + (b.b - a.b) * t),
+        Math.floor(a.a + (b.a - a.a) * t)
+    );
 }

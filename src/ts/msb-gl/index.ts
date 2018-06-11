@@ -5,6 +5,8 @@
 export {
     ColorHSL,
     ColorRGB,
+    lerpColorHSL,
+    lerpColorRGB,
     Material
 } from "./common/index";
 
