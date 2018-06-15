@@ -21,16 +21,16 @@ export function createRandomRangeGenerator(min: number, max: number): Function {
 }
 
 // Return a random integer number between min and max
-export function createIntegerRandomRangeGenerator(min: number, max: number): Function {
-
-    return function() {
-        return Math.floor((Math.random() * max) + min);
-    };
+export function integerRandomRange(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Return a random integer number between min and max
-export function integerRandomRange(min: number, max: number): number {
-    return Math.floor((Math.random() * max) + min);
+export function createIntegerRandomRangeGenerator(min: number, max: number): Function {
+
+    return function() {
+        return integerRandomRange(min, max);
+    };
 }
 
 export function constrain(v: number, min: number, max: number) {
