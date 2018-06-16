@@ -33,6 +33,36 @@ export function createIntegerRandomRangeGenerator(min: number, max: number): Fun
     };
 }
 
+export function createSeededRandom(seed = 1000) {
+
+    let c = 0;
+
+    return function() {
+        let r = (Math.abs(Math.sin(c)) * seed) % 1;
+        c++;
+        return r;
+    };
+};
+
+export function createSeededRandomRangeGenerator (min: number, max: number, seed = 1000): Function {
+
+    let random = createSeededRandom(seed);
+
+    return function() {
+        return random() * (max - min) + min;
+    };
+};
+
+export function createIntegerSeededRandomRangeGenerator (min: number, max: number, seed = 1000): Function {
+
+    let random = createSeededRandom(seed);
+
+    return function() {
+        let r = random();
+        return Math.floor(r * (max - min + 1)) + min;
+    };
+};
+
 export function constrain(v: number, min: number, max: number) {
     
     let r = v;
