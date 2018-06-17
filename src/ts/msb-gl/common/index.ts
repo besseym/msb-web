@@ -5,6 +5,15 @@
 export {
     ColorRGB,
     ColorHSL,
+    createPaletteGenerator,
+    createPaletteGeneratorBright,
+    createPaletteGeneratorCombo,
+    createPaletteGeneratorCool,
+    createPaletteGeneratorGreyscale,
+    createPaletteGeneratorMonochromaticSaturated,
+    createPaletteGeneratorMonochromaticLightness,
+    createPaletteGeneratorVivid,
+    createPaletteGeneratorWarm,
     lerpColorHSL,
     lerpColorRGB
 } from "./color";
