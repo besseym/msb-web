@@ -12,6 +12,7 @@ export {
     createRandomRangeGenerator,
     createSeededRandomRangeGenerator,
     createSeededRandom,
+    getDistance,
     integerRandomRange,
     mapDomainRange,
     normalDistribution,

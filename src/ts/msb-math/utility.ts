@@ -1,5 +1,9 @@
 export const TWO_PI = 2 * Math.PI;
 
+export function getDistance(x1: number, y1: number, x2: number, y2: number){
+    return Math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2);
+}
+
 export function degrees2radians(degrees){
     return degrees * Math.PI / 180.0;
 }
