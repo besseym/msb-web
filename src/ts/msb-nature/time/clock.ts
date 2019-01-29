@@ -68,7 +68,7 @@ class NatureClockNumerals {
 
             numeralWidth = context.measureText(nStr).width;
             x = this.center.x + Math.cos(angle) * (this.radius) - numeralWidth/2;
-            y = this.center.x + Math.sin(angle) * (this.radius) + this._fontHeight/3;
+            y = this.center.y + Math.sin(angle) * (this.radius) + this._fontHeight/3;
 
             context.fillText(nStr, x, y);
             context.restore();
