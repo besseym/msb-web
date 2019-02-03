@@ -5,6 +5,7 @@
 export {
     ColorRGB,
     ColorHSL,
+    colorFactoryRGB,
     createPaletteGenerator,
     createPaletteGeneratorBright,
     createPaletteGeneratorCombo,

@@ -34,6 +34,10 @@ export class ColorHSL {
     constructor(public h: number, public s: number, public l: number, public a = 1.0) {
     }
 
+    clone(): ColorHSL {
+        return new ColorHSL(this.h, this.s, this.l, this.a);
+    }
+
     toArray(): number[] {
         return [this.h, this.s, this.l, this.a];
     }
@@ -99,6 +103,10 @@ export class ColorRGB {
     constructor(public r: number, public g: number, public b: number, public a = 1.0) {
     }
 
+    clone(): ColorRGB {
+        return new ColorRGB(this.r, this.g, this.b, this.a);
+    }
+
     toArray(): number[] {
         return [this.r, this.g, this.b, this.a];
     }
@@ -108,6 +116,282 @@ export class ColorRGB {
         let r = this.r, g = this.g, b = this.b, a = this.a;
         return `rgba(${r}, ${g}, ${b}, ${a})`;
     }
+}
+
+export function colorFactoryRGB(type="black"): ColorRGB {
+
+    let color: ColorRGB;
+
+    switch(type){
+
+        //red colors
+        case "indianred":
+            color = new ColorRGB(205, 92, 92); //#CD5C5C
+            break;
+
+        case "lightcoral":
+            color = new ColorRGB(240, 128, 128); //#F08080
+            break;
+
+        case "salmon":
+            color = new ColorRGB(250, 128, 114); //#FA8072
+            break;
+
+        case "darksalmon":
+            color = new ColorRGB(233, 150, 122); //#E9967A
+            break;
+
+        case "lightsalmon":
+            color = new ColorRGB(255, 160, 122); //#FFA07A
+            break;
+
+        case "crimson":
+            color = new ColorRGB(220, 20, 60); //#DC143C
+            break;
+
+        case "red":
+            color = new ColorRGB(255, 0, 0); //#FF0000
+            break;
+
+        case "firebrick":
+            color = new ColorRGB(178, 34, 34); //#B22222
+            break;
+
+        case "darkred":
+            color = new ColorRGB(139, 0, 0); //#8B0000
+            break;
+
+
+        //pink colors
+        case "pink":
+            color = new ColorRGB(255, 192, 203); //#FFC0CB
+            break;
+
+        case "lightpink":
+            color = new ColorRGB(255, 182, 193); //#FFB6C1
+            break;
+
+        case "hotpink":
+            color = new ColorRGB(255, 105, 180); //#FF69B4
+            break;
+
+        case "deeppink":
+            color = new ColorRGB(255, 20, 147); //#FF1493
+            break;
+
+        case "mediumvioletred":
+            color = new ColorRGB(199, 21, 133); //#C71585
+            break;
+
+        case "palevioletred":
+            color = new ColorRGB(219, 112, 147); //#DB7093
+            break;
+
+        //orange colors
+        case "coral":
+            color = new ColorRGB(255, 127, 80); //#FF7F50
+            break;
+
+        case "tomato":
+            color = new ColorRGB(255, 99, 71); //#FF6347
+            break;
+
+        case "orangered":
+            color = new ColorRGB(255, 69, 0); //#FF4500
+            break;
+
+        case "darkorange":
+            color = new ColorRGB(255, 140, 0); //#FF8C00
+            break;
+
+        case "orange":
+            color = new ColorRGB(255, 165, 0); //#FFA500
+            break;
+
+        //yellow colors
+        case "gold":
+            color = new ColorRGB(255, 215, 0); //#FFD700
+            break;
+
+        case "yellow":
+            color = new ColorRGB(255, 255, 0); //#FFFF00
+            break;
+
+        case "khaki":
+            color = new ColorRGB(240, 230, 140); //#F0E68C
+            break;
+
+        case "darkkhaki":
+            color = new ColorRGB(189, 183, 107); //#BDB76B
+            break;
+
+        //purple colors
+        case "lavender":
+            color = new ColorRGB(230, 230, 250); //#E6E6FA
+            break;
+
+        case "fuchsia":
+            color = new ColorRGB(255, 0, 255); //#FF00FF
+            break;
+
+        case "blueviolet":
+            color = new ColorRGB(138, 43, 226); //#8A2BE2
+            break;
+
+        case "purple":
+            color = new ColorRGB(128, 0, 128); //#800080
+            break;
+
+        case "indigo":
+            color = new ColorRGB(75, 0, 130); //#4B0082
+            break;
+
+        //green colors
+        case "chartreuse":
+            color = new ColorRGB(127, 255, 0); //#7FFF00
+            break;
+
+        case "lime":
+            color = new ColorRGB(0, 255, 0); //#00FF00
+            break;
+
+        case "seagreen":
+            color = new ColorRGB(46, 139, 87); //#2E8B57
+            break;
+
+        case "forestgreen":
+            color = new ColorRGB(34, 139, 34); //#228B22
+            break;
+
+        case "green":
+            color = new ColorRGB(0, 128, 0); //#008000
+            break;
+
+        case "olive":
+            color = new ColorRGB(128, 128, 0); //#808000
+            break;
+
+        case "darkseagreen":
+            color = new ColorRGB(143, 188, 139); //#8FBC8B
+            break;
+
+        case "teal":
+            color = new ColorRGB(0, 128, 128); //#008080
+            break;
+
+        //blue colors
+        case "cyan":
+            color = new ColorRGB(0, 255, 255); //#00FFFF
+            break;
+
+        case "turquoise":
+            color = new ColorRGB(64, 224, 208); //#40E0D0
+            break;
+
+        case "steelblue":
+            color = new ColorRGB(70, 130, 180); //#4682B4
+            break;
+
+        case "powderblue":
+            color = new ColorRGB(176, 224, 230); //#B0E0E6
+            break;
+
+        case "skyblue":
+            color = new ColorRGB(135, 206, 235); //#87CEEB
+            break;
+
+        case "cornflowerblue":
+            color = new ColorRGB(100, 149, 237); //#6495ED
+            break;
+
+        case "royalblue":
+            color = new ColorRGB(65, 105, 225); //#4169E1
+            break;
+
+        case "blue":
+            color = new ColorRGB(0, 0, 255); //#0000FF
+            break;
+
+        case "navy":
+            color = new ColorRGB(0, 0, 128); //#000080
+            break;
+
+        case "midnightblue":
+            color = new ColorRGB(25, 25, 112); //#191970
+            break;
+
+        //brown colors
+        case "tan":
+            color = new ColorRGB(210, 180, 140); //#D2B48C
+            break;
+
+        case "chocolate":
+            color = new ColorRGB(210, 105, 30); //#D2691E
+            break;
+
+        case "sienna":
+            color = new ColorRGB(160, 82, 45); //#A0522D
+            break;
+
+        case "brown":
+            color = new ColorRGB(165, 42, 42); //#A52A2A
+            break;
+
+        case "maroon":
+            color = new ColorRGB(128, 0, 0); //#800000
+            break;
+
+        //white colors
+        case "white":
+            color = new ColorRGB(255, 255, 255); //#FFFFFF
+            break;
+
+        case "ghostwhite":
+            color = new ColorRGB(248, 248, 255); //#F8F8FF
+            break;
+
+        case "whitesmoke":
+            color = new ColorRGB(245, 245, 245); //#F5F5F5
+            break;
+
+        case "ivory":
+            color = new ColorRGB(255, 255, 240); //#FFFFF0
+            break;
+
+        //gray color names
+        case "gainsboro":
+            color = new ColorRGB(220, 220, 220); //#DCDCDC
+            break;
+
+        case "lightgray":
+            color = new ColorRGB(211, 211, 211); //#D3D3D3
+            break;
+
+        case "silver":
+            color = new ColorRGB(192, 192, 192); //#C0C0C0
+            break;
+
+        case "darkgray":
+            color = new ColorRGB(169, 169, 169); //#A9A9A9
+            break;
+
+        case "gray":
+            color = new ColorRGB(128, 128, 128); //#808080
+            break;
+
+        case "dimgray":
+            color = new ColorRGB(105, 105, 105); //#696969
+            break;
+
+        case "black":
+            color = new ColorRGB(0, 0, 0); //#000000
+            break;
+
+        default:
+            break;
+    }
+
+    return color;
 }
 
 export function createFactoryColorRGB(r = [0, 1], g = [0, 1], b = [0, 1]): Function {
