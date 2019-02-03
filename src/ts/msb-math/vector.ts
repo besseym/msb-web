@@ -1,5 +1,5 @@
 import {Container} from "./container";
-import {degrees2radians, radians2degrees, randomRange} from "./utility";
+import {mathDegrees2radians, mathRadians2degrees, randomRange} from "./utility";
 
 export class Vector {
 
@@ -107,7 +107,7 @@ export class Vector {
 
     setXY(theta: number, radius: number) {
 
-        let thetaRadians = degrees2radians(theta);
+        let thetaRadians = mathDegrees2radians(theta);
         this.setXYRadians(thetaRadians, radius);
     }
 
@@ -118,7 +118,7 @@ export class Vector {
     }
 
     getAngleXY(): number {
-        return radians2degrees(this.getAngleXYRadians());
+        return mathRadians2degrees(this.getAngleXYRadians());
     }
 
     getAngleXYRadians(): number {

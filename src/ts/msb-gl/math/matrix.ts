@@ -2,7 +2,7 @@
  * Created by michaelbessey on 11/13/16.
  */
 
-import {degrees2radians, Vector} from "../../msb-math";
+import {mathDegrees2radians, Vector} from "../../msb-math";
 
 export class DimMatrix {
 
@@ -41,7 +41,7 @@ export class DimMatrix {
 
     static perspectiveProjection(fovy, aspect, near, far) {
 
-        let f = 1.0 / Math.tan( degrees2radians(fovy) / 2.0),
+        let f = 1.0 / Math.tan( mathDegrees2radians(fovy) / 2.0),
             d = far - near,
             matrix = DimMatrix.identity();
 
@@ -136,7 +136,7 @@ export class DimMatrix {
 
     toRotationArrayX(): number[] {
 
-        let angle = degrees2radians(this.rotationX),
+        let angle = mathDegrees2radians(this.rotationX),
             cosAngle = Math.cos(angle),
             sinAngle = Math.sin(angle);
 
@@ -150,7 +150,7 @@ export class DimMatrix {
 
     toRotationArrayY(): number[] {
 
-        let angle = degrees2radians(this.rotationY),
+        let angle = mathDegrees2radians(this.rotationY),
             cosAngle = Math.cos(angle),
             sinAngle = Math.sin(angle);
 
@@ -164,7 +164,7 @@ export class DimMatrix {
 
     toRotationArrayZ(): number[] {
 
-        let angle = degrees2radians(this.rotationZ),
+        let angle = mathDegrees2radians(this.rotationZ),
             cosAngle = Math.cos(angle),
             sinAngle = Math.sin(angle);
 

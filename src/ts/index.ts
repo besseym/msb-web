@@ -47,7 +47,6 @@ export {
 //msb-math
 export {
     Container,
-    degrees2radians,
     createConstrainer,
     createDomainMapper,
     createHarmonicGenerator,
@@ -56,12 +55,14 @@ export {
     createRandomRangeGenerator,
     createSeededRandomRangeGenerator,
     createSeededRandom,
-    getDistance,
     integerRandomRange,
     mapDomainRange,
+    mathDegrees2radians,
+    mathDistance,
+    mathHypotenuse,
+    mathRadians2degrees,
     normalDistribution,
     normalGaussianGenerator,
-    radians2degrees,
     randomRange,
     Matrix,
     Vector

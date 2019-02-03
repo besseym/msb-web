@@ -1,14 +1,18 @@
 export const TWO_PI = 2 * Math.PI;
 
-export function getDistance(x1: number, y1: number, x2: number, y2: number){
-    return Math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2);
+export function mathDistance(x1: number, y1: number, x2: number, y2: number){
+    return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
 }
 
-export function degrees2radians(degrees){
+export function mathHypotenuse(a, b){
+    return Math.sqrt(a*a + b*b);
+}
+
+export function mathDegrees2radians(degrees){
     return degrees * Math.PI / 180.0;
 }
 
-export function radians2degrees(radians){
+export function mathRadians2degrees(radians){
     return radians * 180.0 / Math.PI;
 }
 

@@ -2,7 +2,7 @@
  * Created by michaelbessey on 7/18/16.
  */
 
-import {degrees2radians, Vector} from "../../msb-math/index";
+import {mathDegrees2radians, Vector} from "../../msb-math/index";
 
 export abstract class RasterShape {
 
@@ -29,7 +29,7 @@ export abstract class RasterShape {
         context.save();
 
         context.translate(this.location.x, this.location.y);
-        context.rotate(degrees2radians(this.angle));
+        context.rotate(mathDegrees2radians(this.angle));
 
         context.fillStyle = this.fillStyle;
         context.lineWidth = this.lineWidth;

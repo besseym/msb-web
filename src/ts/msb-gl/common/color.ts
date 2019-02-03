@@ -11,6 +11,15 @@ import {
 
 export class ColorHSL {
 
+    static isEqual(c1: ColorHSL, c2: ColorHSL, checkAlpha=true){
+
+        let hasSameValues = (c1.h == c2.h && c1.s == c2.s && c1.l == c2.l);
+        if(checkAlpha){
+            hasSameValues && (c1.a == c2.a);
+        }
+        return hasSameValues;
+    }
+
     static getRandom(h = [0, 256], s = [0, 100], l = [0, 100], a = 1): ColorHSL {
 
         let hue = integerRandomRange(h[0], h[1]),
@@ -86,6 +95,15 @@ export function lerpColorHSL(a: ColorHSL, b: ColorHSL, t: number){
 }
 
 export class ColorRGB {
+
+    static isEqual(c1: ColorRGB, c2: ColorRGB, checkAlpha=true){
+
+        let hasSameValues = (c1.r == c2.r && c1.g == c2.g && c1.b == c2.b);
+        if(checkAlpha){
+            hasSameValues && (c1.a == c2.a);
+        }
+        return hasSameValues;
+    }
 
     static getRandom(min: number = 0.0, max: number = 1.0): ColorRGB {
 
