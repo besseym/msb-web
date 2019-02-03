@@ -394,6 +394,29 @@ export function colorFactoryRGB(type="black"): ColorRGB {
     return color;
 }
 
+export function createNamedPaletteGeneratorRGB(colorNameArray=[]){
+
+    let colorName,
+        color, colorArray = [],
+        indexGenerator
+    ;
+
+    for(colorName of colorNameArray){
+        color = colorFactoryRGB(colorName);
+        if(color){
+            colorArray.push(color);
+        }
+    }
+
+    indexGenerator = createIntegerRandomRangeGenerator(0, colorArray.length - 1);
+
+    return function(alpha = 1.0){
+        color = colorArray[indexGenerator()];
+        color.alpha = alpha;
+        return color;
+    };
+}
+
 export function createFactoryColorRGB(r = [0, 1], g = [0, 1], b = [0, 1]): Function {
 
     let redGenerator = createRandomRangeGenerator(r[0], r[1]),
