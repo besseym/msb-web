@@ -94,6 +94,18 @@ export function lerpColorHSL(a: ColorHSL, b: ColorHSL, t: number){
     );
 }
 
+export function rgbColorToHex(r, g, b) {
+
+    if (r > 255 || g > 255 || b > 255)
+        throw "Invalid color components";
+
+    if(r === 0 && g === 0 && b === 0){
+        return "000000";
+    }
+
+    return ((r << 16) | (g << 8) | b).toString(16);
+}
+
 export class ColorRGB {
 
     static isEqual(c1: ColorRGB, c2: ColorRGB, checkAlpha=true){
@@ -133,6 +145,10 @@ export class ColorRGB {
 
         let r = this.r, g = this.g, b = this.b, a = this.a;
         return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
+
+    toHex(){
+        return rgbColorToHex(this.r, this.g, this.b);
     }
 }
 

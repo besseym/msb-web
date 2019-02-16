@@ -18,7 +18,8 @@ export {
     createPaletteGeneratorWarm,
     lerpColorHSL,
     lerpColorRGB,
-    Material
+    Material,
+    rgbColorToHex
 } from "./common/index";
 
 export {

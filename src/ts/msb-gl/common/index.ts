@@ -17,7 +17,8 @@ export {
     createPaletteGeneratorVivid,
     createPaletteGeneratorWarm,
     lerpColorHSL,
-    lerpColorRGB
+    lerpColorRGB,
+    rgbColorToHex
 } from "./color";
 export {Font} from "./font";
 export {Material} from "./material";
