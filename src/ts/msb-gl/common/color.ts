@@ -43,6 +43,13 @@ export class ColorHSL {
     constructor(public h: number, public s: number, public l: number, public a = 1.0) {
     }
 
+    hasColor(useAlpha = true) : boolean {
+
+        let hasColor = (this.h > 0 || this.s > 0 || this.l > 0);
+        hasColor = (useAlpha) ? (hasColor || this.a > 0) : hasColor;
+        return hasColor;
+    }
+
     clone(): ColorHSL {
         return new ColorHSL(this.h, this.s, this.l, this.a);
     }
@@ -131,6 +138,13 @@ export class ColorRGB {
 
 
     constructor(public r: number, public g: number, public b: number, public a = 1.0) {
+    }
+
+    hasColor(useAlpha = true) : boolean {
+
+        let hasColor = (this.r > 0 || this.g > 0 || this.b > 0);
+        hasColor = (useAlpha) ? (hasColor || this.a > 0) : hasColor;
+        return hasColor;
     }
 
     clone(): ColorRGB {
